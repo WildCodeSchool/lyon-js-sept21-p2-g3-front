@@ -1,12 +1,10 @@
 /* eslint-disable */
 import React from 'react';
 
-    
-function Home () {
+function Favorites(){
     return (
-        <h1>Home</h1>
+        <h1>Favori</h1>
     );
 }
 
-
-export default Home;
+export default Favorites; 
