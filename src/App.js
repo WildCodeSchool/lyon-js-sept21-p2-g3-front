@@ -1,11 +1,12 @@
 /* eslint-disable */
-import NavBar from "./pages/NavBar";
+import NavBar from './pages/NavBar';
 
 function App() {
-  return (<div className="App">
-      <NavBar/>
+  return (
+    <div className="App">
+      <NavBar />
     </div>
-    );
+  );
 }
 
 export default App;
