@@ -11,7 +11,7 @@ import Shopkeepers from './pages/Shopkeepers';
 
 function App() {
   return (
-    <div className="App">
+    <div className="flex flex-col h-screen justify-between">
       <NavBar />
       <Switch>
         <Route exact path="/" component={Home} />
