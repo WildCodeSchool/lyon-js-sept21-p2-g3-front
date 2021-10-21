@@ -1,8 +1,7 @@
-/* eslint-disable */
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 import NavBar from './pages/NavBar';
 import Footer from './pages/Footer';
-import { Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Favorites from './pages/Favorites';
 import ListOfIngredients from './pages/ListOfIngredients';

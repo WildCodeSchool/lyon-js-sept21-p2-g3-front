@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react';
 
 function NavBar() {
@@ -10,12 +9,13 @@ function NavBar() {
           MyFood
         </h1>
         <div className="">
-          <label for="searchBar" />
-          <input
-            id="searchBar"
-            type="text"
-            placeholder="Rechercher une recette"
-          ></input>
+          <label htmlFor="searchBar">
+            <input
+              id="searchBar"
+              type="text"
+              placeholder="Rechercher une recette"
+            />
+          </label>
         </div>
       </div>
     </>
