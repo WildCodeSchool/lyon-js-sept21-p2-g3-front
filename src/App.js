@@ -1,12 +1,13 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import NavBar from './pages/NavBar';
-import Footer from './pages/Footer';
+import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 import Home from './pages/Home';
 import Favorites from './pages/Favorites';
-import ListOfIngredients from './pages/ListOfIngredients';
+import ShoppingList from './pages/ShoppingList';
 import Planning from './pages/Planning';
 import Shopkeepers from './pages/Shopkeepers';
+import RecipeDetails from './pages/RecipeDetails';
 
 function App() {
   return (
@@ -14,10 +15,11 @@ function App() {
       <NavBar />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/Favori" component={Favorites} />
-        <Route path="/ListOfIngredients" component={ListOfIngredients} />
-        <Route path="/Planning" component={Planning} />
-        <Route path="/Shopkeepers" component={Shopkeepers} />
+        <Route exact path="/recipe/:id" component={RecipeDetails} />
+        <Route path="/favorites" component={Favorites} />
+        <Route path="/shopping-list" component={ShoppingList} />
+        <Route path="/planning" component={Planning} />
+        <Route path="/shopkeepers" component={Shopkeepers} />
       </Switch>
 
       <Footer />

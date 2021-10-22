@@ -15,7 +15,7 @@ function Footer() {
           </NavLink>
         </li>
         <li>
-          <NavLink activeClassName="active" to="/Favorites">
+          <NavLink activeClassName="active" to="/favorites">
             <img
               id="ImgHeart"
               src="https://img.icons8.com/ios-filled/50/000000/like--v1.png"
@@ -24,7 +24,7 @@ function Footer() {
           </NavLink>
         </li>
         <li>
-          <NavLink activeClassName="active" to="/ListOfIngredients">
+          <NavLink activeClassName="active" to="/shopping-list">
             <img
               id="ImgList"
               src="https://img.icons8.com/ios-filled/50/000000/hamper.png"
@@ -33,7 +33,7 @@ function Footer() {
           </NavLink>
         </li>
         <li>
-          <NavLink activeClassName="active" to="/Planning">
+          <NavLink activeClassName="active" to="/planning">
             {' '}
             <img
               id="ImgPlanning"
@@ -43,7 +43,7 @@ function Footer() {
           </NavLink>
         </li>
         <li>
-          <NavLink activeClassName="active" to="/Shopkeepers">
+          <NavLink activeClassName="active" to="/shopkeepers">
             <img
               id="ImgFarmer"
               src="https://img.icons8.com/external-itim2101-fill-itim2101/64/000000/external-farmer-male-occupation-avatar-itim2101-fill-itim2101-1.png"
