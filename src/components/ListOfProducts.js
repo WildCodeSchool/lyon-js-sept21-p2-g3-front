@@ -8,7 +8,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Avatar from '@mui/material/Avatar';
 
 export default function ListOfProducts() {
-  const [checked, setChecked] = React.useState([1]);
+  const [checked, setChecked] = React.useState([]);
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
@@ -36,6 +36,12 @@ export default function ListOfProducts() {
                 onChange={handleToggle(value)}
                 checked={checked.indexOf(value) !== -1}
                 inputProps={{ 'aria-labelledby': labelId }}
+                sx={{
+                  color: '#FECACA',
+                  '&.Mui-checked': {
+                    color: 'green',
+                  },
+                }}
               />
             }
             disablePadding
@@ -47,7 +53,7 @@ export default function ListOfProducts() {
                   src={`/static/images/avatar/${value + 1}.jpg`}
                 />
               </ListItemAvatar>
-              <ListItemText id={labelId} primary={`Line item ${value + 1}`} />
+              <ListItemText id={labelId} primary={`item ${value + 1}`} />
             </ListItemButton>
           </ListItem>
         );
