@@ -19,12 +19,11 @@ export default function ListOfProducts() {
     } else {
       newChecked.splice(currentIndex, 1);
     }
-
     setChecked(newChecked);
   };
 
   return (
-    <List sx={{ width: '100%', maxWidth: 360 }}>
+    <List sx={{ width: '100%', maxWidth: 600, margin: 'auto' }}>
       {[0, 1, 2, 3].map((value) => {
         const labelId = `checkbox-list-secondary-label-${value}`;
         return (
@@ -32,7 +31,6 @@ export default function ListOfProducts() {
             key={value}
             secondaryAction={
               <Checkbox
-                edge="end"
                 onChange={handleToggle(value)}
                 checked={checked.indexOf(value) !== -1}
                 inputProps={{ 'aria-labelledby': labelId }}
