@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useState } from 'react';
 import axios from 'axios';
 import RecipeTile from '../components/RecipeTile';
@@ -31,7 +30,7 @@ function Home() {
         for (
           let recipeIndex = 0;
           recipeIndex < data.hits.length;
-          recipeIndex++
+          recipeIndex += 1
         ) {
           // data.hits contains all of the different recipes existing according to the input of the user
           newLabels.push(data.hits[recipeIndex].recipe.label);
