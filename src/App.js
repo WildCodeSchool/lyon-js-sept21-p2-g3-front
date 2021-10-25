@@ -11,7 +11,7 @@ import RecipeDetails from './pages/RecipeDetails';
 
 function App() {
   return (
-    <div className="flex flex-col h-screen align-center">
+    <div className="flex flex-col h-screen align-center overflow-hidden">
       <NavBar />
       <Switch>
         <Route exact path="/" component={Home} />
