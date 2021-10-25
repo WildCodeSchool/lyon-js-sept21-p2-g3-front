@@ -7,7 +7,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Checkbox from '@mui/material/Checkbox';
 import Avatar from '@mui/material/Avatar';
 
-export default function DairyProducts() {
+export default function IngredientList() {
   const [checked, setChecked] = React.useState([]);
 
   const handleToggle = (value) => () => {
@@ -24,7 +24,7 @@ export default function DairyProducts() {
 
   return (
     <List sx={{ width: '100%', maxWidth: 600, margin: 'auto' }}>
-      {[0, 1, 2, 3].map((value) => {
+      {[0, 1, 2, 3, 5, 6, 7, 8, 9].map((value) => {
         const labelId = `checkbox-list-secondary-label-${value}`;
         return (
           <ListItem
@@ -42,7 +42,6 @@ export default function DairyProducts() {
                 }}
               />
             }
-            disablePadding
           >
             <ListItemButton>
               <ListItemAvatar>
