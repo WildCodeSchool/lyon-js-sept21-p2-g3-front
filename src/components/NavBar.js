@@ -15,7 +15,6 @@ function NavBar() {
             className="items-center my-0 w-auto h-20"
           />
         </NavLink>
-        <img src="media/2.png" alt="titre" className="w-auto h-20" />
         <h1 id="NavBarTitle" className="w-auto">
           My Food
         </h1>
