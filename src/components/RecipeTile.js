@@ -10,13 +10,27 @@ const RecipeTile = ({ imgSrc, imgAlt }) => {
       <Link to="/recipe:id">
         <div id="RecipeContainer" className=" w-72 rounded-3xl">
           <img src={imgSrc} alt={imgAlt} className="rounded-t-3xl" />
-          <h3
-            id="RecipeTitle"
-            className="flex items-center justify-center h-16 bg-recipeWhite rounded-b-3xl text-title font-bold"
-          >
-            {' '}
-            {imgAlt}{' '}
-          </h3>
+          <div id="RecipeTitleContainer" className="relative">
+            <Link to="/favorites">
+              <span className="flex items-center justify-center bg-recipeWhite absolute z-20 left-12 -top-10 w-16 h-16 rounded-full">
+                {' '}
+                H{' '}
+              </span>{' '}
+            </Link>
+            <Link to="/addtoplanning">
+              <span className="flex items-center justify-center bg-recipeWhite absolute z-20 right-12 -top-10 w-16 h-16 rounded-full">
+                {' '}
+                H{' '}
+              </span>{' '}
+            </Link>
+            <h3
+              id="RecipeTitle"
+              className="flex items-center justify-center h-16 bg-recipeWhite rounded-b-3xl text-title font-bold"
+            >
+              {' '}
+              {imgAlt}{' '}
+            </h3>
+          </div>
         </div>
       </Link>
     </div>
