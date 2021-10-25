@@ -24,7 +24,7 @@ export default function IngredientList() {
 
   return (
     <List sx={{ width: '100%', maxWidth: 600, margin: 'auto' }}>
-      {[0, 1, 2, 3, 5, 6, 7, 8, 9].map((value) => {
+      {[0, 1, 2, 3, 5, 6, 7, 8, 9, 10].map((value) => {
         const labelId = `checkbox-list-secondary-label-${value}`;
         return (
           <ListItem
@@ -42,6 +42,7 @@ export default function IngredientList() {
                 }}
               />
             }
+            disablePadding
           >
             <ListItemButton>
               <ListItemAvatar>
