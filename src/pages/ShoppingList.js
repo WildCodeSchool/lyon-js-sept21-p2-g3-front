@@ -1,53 +1,58 @@
 import React from 'react';
-import ListOfProducts from '../components/ListOfProducts';
+import ButchersShop from '../components/catIngredients.js/ButchersShop';
+import FishShop from '../components/catIngredients.js/FishShop';
+import DairyProducts from '../components/catIngredients.js/DairyProducts';
+import Fruits from '../components/catIngredients.js/Fruits';
+import Vegetables from '../components/catIngredients.js/Vegetables';
+import Grocery from '../components/catIngredients.js/Grocery';
+import Drinks from '../components/catIngredients.js/Drinks';
 
 function ShoppingList() {
   return (
     <>
       <div className="flex-auto text-xl font-semibold justify-items-center text-center">
-        <h1 className="text-3xl p-2">Mon panier</h1>
+        <h1 className="text-3xl p-2">My shopping list</h1>
 
         <h2 className="p-2 my-2 border-t-4 border-b-4 border-red-200 bg-red bg-red-200 bg-opacity-60">
-          🍖 BOUCHERIE 🍖
+          🍖 BUTCHER'S SHOP 🍖
         </h2>
 
-        <ListOfProducts />
+        <ButchersShop />
 
         <h2 className="p-2 my-2 border-t-4 border-b-4 border-red-200 bg-red bg-red-200 bg-opacity-60">
-          🐟 POISSONERIE 🐟
+          🐟 FISH SHOP 🐟
         </h2>
 
-        <ListOfProducts />
+        <FishShop />
 
         <h2 className="p-2 my-2 border-t-4 border-b-4 border-red-200 bg-red bg-red-200 bg-opacity-60">
-          🥛 PRODUITS LAITIERS 🥛
+          🥛 DAIRY PRODUCTS 🥛
         </h2>
 
-        <ListOfProducts />
+        <DairyProducts />
 
         <h2 className="p-2 my-2 border-t-4 border-b-4 border-red-200 bg-red bg-red-200 bg-opacity-60">
           🍎 FRUITS 🍎
         </h2>
 
-        <ListOfProducts />
+        <Fruits />
 
         <h2 className="p-2 my-2 border-t-4 border-b-4 border-red-200 bg-red bg-red-200 bg-opacity-60">
-          🥕 LÉGUMES 🥕
+          🥕 VEGETABLES 🥕
         </h2>
 
-        <ListOfProducts />
+        <Vegetables />
 
         <h2 className="p-2 my-2 border-t-4 border-b-4 border-red-200 bg-red bg-red-200 bg-opacity-60">
-          🧂 ÉPICERIES 🧂
+          🧂 GROCERY STORES 🧂
         </h2>
 
-        <ListOfProducts />
+        <Grocery />
 
         <h2 className="p-2 my-2 border-t-4 border-b-4 border-red-200 bg-red bg-red-200 bg-opacity-60">
-          🍹 BOISSONS 🍹
+          🍹 DRINKS 🍹
         </h2>
-
-        <ListOfProducts />
+        <Drinks />
       </div>
     </>
   );

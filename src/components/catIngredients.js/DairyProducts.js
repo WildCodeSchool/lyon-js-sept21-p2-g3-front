@@ -7,7 +7,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Checkbox from '@mui/material/Checkbox';
 import Avatar from '@mui/material/Avatar';
 
-export default function ListOfProducts() {
+export default function DairyProducts() {
   const [checked, setChecked] = React.useState([]);
 
   const handleToggle = (value) => () => {
