@@ -48,7 +48,7 @@ function Home() {
   return (
     <div
       id="Home"
-      className="flex flex-col justify-center items-center gap-10 bg-primary flex-grow"
+      className="flex flex-col justify-center items-center gap-10 bg-primary flex-grow pb-8"
     >
       <h1 className="text-center">Home</h1>
       <button type="button" onClick={getRecipe}>
