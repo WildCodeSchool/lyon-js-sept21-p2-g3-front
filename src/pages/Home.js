@@ -8,12 +8,12 @@ function Home({ recipes }) {
       className="flex flex-col justify-center items-center gap-10 pb-8"
     >
       <h1 className="text-center">Home</h1>
-      {recipes.map((recipe) => {
+      {recipes.map((info) => {
         return (
           <RecipeTile
-            key={recipe.uri}
-            imgAlt={recipe.label}
-            imgSrc={recipe.image}
+            key={info.recipe.uri}
+            imgAlt={info.recipe.label}
+            imgSrc={info.recipe.image}
           />
         );
       })}

@@ -20,7 +20,12 @@ function NavBar({ setSearch }) {
         <h1 id="NavBarTitle" className="w-auto">
           My Food
         </h1>
-        <form onSubmit={setSearch(newSearch)}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            setSearch(newSearch);
+          }}
+        >
           <label htmlFor="searchBar">
             <input
               className="rounded-2xl border border-black border-solid opacity-50 shadow-2xl mx-4 w-auto"

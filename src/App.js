@@ -12,7 +12,7 @@ import RecipeDetails from './pages/RecipeDetails';
 
 function App() {
   // construction of the arrays with the wanted informations from the api for the app
-  const [recipes, setRecipes] = useState();
+  const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState('');
   const getRecipe = () => {
     axios
@@ -28,7 +28,7 @@ function App() {
       // Use this data to update the state
 
       .then((data) => {
-        console.log(data);
+        console.log(data.hits);
         // data.hits contains all of the different recipes existing according to the input of the user
         setRecipes(data.hits);
       });
