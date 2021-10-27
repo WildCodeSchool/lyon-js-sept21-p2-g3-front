@@ -14,6 +14,7 @@ module.exports = {
         recipeWhite: '#FFFCF0',
         title: '#674E3C',
       },
+    },
   },
   variants: {
     extend: {},
