@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
-function NavBar() {
+function NavBar({ setSearch }) {
+  const [newSearch, setNewSearch] = useState('');
+
   return (
     <>
       <div
@@ -18,14 +20,17 @@ function NavBar() {
         <h1 id="NavBarTitle" className="w-auto">
           My Food
         </h1>
-        <label htmlFor="searchBar">
-          <input
-            className="rounded-2xl border border-black border-solid opacity-50 shadow-2xl mx-4 w-auto"
-            id="searchBar"
-            type="text"
-            placeholder="Rechercher une recette"
-          />
-        </label>
+        <form onSubmit={setSearch(newSearch)}>
+          <label htmlFor="searchBar">
+            <input
+              className="rounded-2xl border border-black border-solid opacity-50 shadow-2xl mx-4 w-auto"
+              id="searchBar"
+              type="text"
+              placeholder="Rechercher une recette"
+              onChange={(e) => setNewSearch(e.target.value)}
+            />
+          </label>
+        </form>
       </div>
     </>
   );
