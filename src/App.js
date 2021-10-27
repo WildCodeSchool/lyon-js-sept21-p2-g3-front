@@ -7,6 +7,7 @@ import Favorites from './pages/Favorites';
 import ShoppingList from './pages/ShoppingList';
 import Planning from './pages/Planning';
 import Shopkeepers from './pages/Shopkeepers';
+// eslint-disable-next-line import/no-unresolved
 import RecipeDetails from './pages/RecipeDetails';
 
 function App() {
