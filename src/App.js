@@ -13,6 +13,7 @@ function App() {
   return (
     <div className="flex flex-col h-screen align-center overflow-hidden">
       <NavBar />
+
       <div id="main" className="flex-grow overflow-y-scroll bg-background">
         <Switch>
           <Route exact path="/" component={Home} />

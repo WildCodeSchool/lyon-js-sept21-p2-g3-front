@@ -4,10 +4,11 @@ import { NavLink } from 'react-router-dom';
 function Footer() {
   return (
     <div>
-      <ul className="flex flex-row justify-between">
+      <ul className="flex flex-row justify-between items-center bg-third h-20">
         <li>
           <NavLink activeClassName="active" exact to="/">
             <img
+              className=""
               id="ImgHome"
               src="https://img.icons8.com/material-outlined/50/000000/home--v2.png"
               alt="Home"

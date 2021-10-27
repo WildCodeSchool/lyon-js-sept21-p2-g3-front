@@ -7,11 +7,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        primary: '#157A2C',
+        secondary: '#7CC156',
         background: '#F3F4DF',
+        third: '#F4A871',
         recipeWhite: '#FFFCF0',
         title: '#674E3C',
       },
-    },
   },
   variants: {
     extend: {},
