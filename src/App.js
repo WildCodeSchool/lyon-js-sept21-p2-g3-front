@@ -11,16 +11,19 @@ import RecipeDetails from './pages/RecipeDetails';
 
 function App() {
   return (
-    <div className="flex flex-col h-screen justify-between">
+    <div className="flex flex-col h-screen align-center overflow-hidden">
       <NavBar />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/recipe/:id" component={RecipeDetails} />
-        <Route path="/favorites" component={Favorites} />
-        <Route path="/shopping-list" component={ShoppingList} />
-        <Route path="/planning" component={Planning} />
-        <Route path="/shopkeepers" component={Shopkeepers} />
-      </Switch>
+
+      <div id="main" className="flex-grow overflow-y-scroll bg-background">
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/recipe/:id" component={RecipeDetails} />
+          <Route path="/favorites" component={Favorites} />
+          <Route path="/shopping-list" component={ShoppingList} />
+          <Route path="/planning" component={Planning} />
+          <Route path="/shopkeepers" component={Shopkeepers} />
+        </Switch>
+      </div>
       <Footer />
     </div>
   );
