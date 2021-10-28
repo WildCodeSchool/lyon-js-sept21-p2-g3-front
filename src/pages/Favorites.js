@@ -49,8 +49,10 @@ function Favorites() {
         Get Favorites Id{' '}
       </button>
       {favoriteRecipes.map((favorite) => {
+        console.log('favorite : ', favorite);
         return (
           <RecipeTile
+            key={favorite.recipe.uri}
             imgSrc={favorite.recipe.image}
             imgAlt={favorite.recipe.label}
           />
