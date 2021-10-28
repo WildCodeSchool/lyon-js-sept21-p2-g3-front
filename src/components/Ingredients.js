@@ -1,15 +1,18 @@
 import React from 'react';
 import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
 
 const Ingredients = () => {
   return (
-    <div className="flex flex-row py-3">
+    <div className="flex flex-row ">
       <div>
-        <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-        <p className="">500g</p>
+        <Stack>
+          <Avatar alt="Ingrédients" src="" sx={{ width: 30, height: 30 }} />
+        </Stack>
+        <p className="text-xs">nom</p>
       </div>
       <div>
-        <p>nom</p>
+        <p className="text-xs m-2">quantité</p>
       </div>
     </div>
   );
