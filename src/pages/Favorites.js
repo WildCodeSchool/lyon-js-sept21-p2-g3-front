@@ -6,6 +6,7 @@ import RecipeTile from '../components/RecipeTile';
 function Favorites() {
   const [favoritesId, setFavoritesId] = useState([]);
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
+
   const getFavoritesId = () => {
     axios
       .get('http://localhost:5000/favorites')
@@ -17,28 +18,21 @@ function Favorites() {
       });
   };
 
-  const getFavorites = (favoriteId) => {
-    axios
+  const getFavorite = (favoriteId) => {
+    return axios
       .get(
         ` https://api.edamam.com/api/recipes/v2/%23${favoriteId}?type=public&app_id=f3601de5&app_key=960c7d96572cfedbc3eb6bffbfaf24c9`
       )
       .then((response) => response.data)
-      .then((data) => {
-        console.log('data : ', data);
-        console.log('data[0] : ', data[0]);
-        setFavoriteRecipes(favoriteRecipes.push(data));
-        console.log('favoriteRecipes : ', favoriteRecipes);
-      });
+      .then((data) => data);
   };
 
   useEffect(() => {
-    for (
-      let favoriteIndex = 0;
-      favoriteIndex < favoritesId.length;
-      favoriteIndex += 1
-    ) {
-      getFavorites(favoritesId[favoriteIndex]);
-    }
+    Promise.all(
+      favoritesId.map((id) => {
+        return getFavorite(id);
+      })
+    ).then((favoritesObject) => setFavoriteRecipes(favoritesObject));
   }, [favoritesId]);
 
   return (
