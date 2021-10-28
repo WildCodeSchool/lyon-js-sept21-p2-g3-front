@@ -12,9 +12,7 @@ function Favorites() {
       .get('http://localhost:5000/favorites')
       .then((response) => response.data)
       .then((data) => {
-        console.log(data);
         setFavoritesId(data);
-        console.log(favoritesId);
       });
   };
 
@@ -43,7 +41,6 @@ function Favorites() {
         Get Favorites Id{' '}
       </button>
       {favoriteRecipes.map((favorite) => {
-        console.log('favorite : ', favorite);
         return (
           <RecipeTile
             key={favorite.recipe.uri}
