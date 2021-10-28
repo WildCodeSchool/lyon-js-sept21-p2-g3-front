@@ -33,13 +33,11 @@ function Favorites() {
     ).then((favoritesObject) => setFavoriteRecipes(favoritesObject));
   }, [favoritesId]);
 
+  useEffect(() => getFavoritesId(), []);
+
   return (
     <div>
       <h1> Favorites</h1>
-      <button type="button" onClick={getFavoritesId}>
-        {' '}
-        Get Favorites Id{' '}
-      </button>
       {favoriteRecipes.map((favorite) => {
         return (
           <RecipeTile
