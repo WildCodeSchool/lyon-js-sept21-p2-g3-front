@@ -36,7 +36,10 @@ function Favorites() {
   useEffect(() => getFavoritesId(), []);
 
   return (
-    <div id="main" className="flex flex-col justify-center items-center gap-10">
+    <div
+      id="main"
+      className="flex flex-col justify-center items-center gap-10 pb-8"
+    >
       <h1> Favorites</h1>
       {favoriteRecipes.map((favorite) => {
         return (
