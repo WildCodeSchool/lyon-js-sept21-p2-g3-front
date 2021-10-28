@@ -13,6 +13,8 @@ module.exports = {
       secondary: '#7CC156',
       background: '#FECACA',
       third: '#F4A871',
+      four: '#FFFCF0',
+
     },
   },
   variants: {
