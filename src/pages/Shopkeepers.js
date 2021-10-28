@@ -43,10 +43,10 @@ function Shopkeepers() {
         </MapContainer>
       </div>
       <section className="py-4 container flex justify-between">
-        <div className="">
+        <div className="m-8">
           {dataKeepers.cardData.map((item) => {
             return (
-              <div className="mx-0 mb-4">
+              <div className="mx-0 mb-8 text-center">
                 <div className="p-0 overflow-hidden h-100 shadow-lg bg-background bg-opacity-60 rounded-md">
                   <img src={item.img} alt="" className="card-img-top" />
                   <div className="card-body">
