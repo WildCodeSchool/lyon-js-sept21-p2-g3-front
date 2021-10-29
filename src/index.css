@@ -16,8 +16,6 @@ code {
     monospace;
 }
 
-.active
-svg{
-
-  color : yellow;
+.active svg {
+  color: yellow;
 }
