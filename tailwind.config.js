@@ -14,7 +14,6 @@ module.exports = {
       background: '#FECACA',
       third: '#F4A871',
       four: '#FFFCF0',
-
     },
   },
   variants: {

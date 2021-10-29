@@ -1,8 +1,10 @@
 import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import dataKeepers from '../components/DataKeepers';
+import cardData from '../components/DataKeepers';
 
 function Shopkeepers() {
+  console.log(cardData);
+
   return (
     <>
       <div className="flex-auto text-xl font-semibold justify-items-center text-center">
@@ -20,7 +22,17 @@ function Shopkeepers() {
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Marker position={[45.85147, 4.87585]}>
+          {cardData.map((data) => {
+            return (
+              <Marker position={[data.gps[0], data.gps[1]]}>
+                <Popup>
+                  {data.title} <br />, {data.adress}
+                </Popup>
+              </Marker>
+            );
+          })}
+
+          {/* <Marker position={[45.85147, 4.87585]}>
             <Popup>
               Les jardins du plateau. <br /> Cailloux sur Fontaines.
             </Popup>
@@ -39,12 +51,12 @@ function Shopkeepers() {
             <Popup>
               La ferme d'Orliénas. <br /> Orliénas.
             </Popup>
-          </Marker>
+          </Marker> */}
         </MapContainer>
       </div>
       <section className=" bg-four container">
         <div className="m-8">
-          {dataKeepers.cardData.map((item) => {
+          {cardData.map((item) => {
             return (
               <div className="mx-0 mb-8 text-center">
                 <div className="p-0 overflow-hidden h-100 shadow-lg bg-background bg-opacity-60 rounded-md">
