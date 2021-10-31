@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import SearchIcon from '@mui/icons-material/Search';
 
 function NavBar({ setSearch }) {
   const [newSearch, setNewSearch] = useState('');
@@ -8,18 +9,17 @@ function NavBar({ setSearch }) {
     <>
       <div
         id="NavBar"
-        className="flex flex-row justify-between items-center h-25 bg-third w-full"
+        className="flex flex-row justify-between items-center h-25 bg-background w-full"
       >
-        <NavLink activeClassName="active" exact to="/">
-          <img
-            src="media/1.png"
-            alt="img-logo"
-            className="items-center my-0 w-auto h-20"
-          />
+        <NavLink
+          activeClassName="active"
+          exact
+          to="/"
+          className="flex flex-row justify-between items-center h-25 "
+        >
+          <img src="media/1.png" alt="img-logo" className="h-20" />
+          <img src="media/2.png" alt="img-logo" className="h-20" />
         </NavLink>
-        <h1 id="NavBarTitle" className="w-auto">
-          My Food
-        </h1>
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -28,12 +28,15 @@ function NavBar({ setSearch }) {
         >
           <label htmlFor="searchBar">
             <input
-              className="rounded-2xl border border-black border-solid opacity-50 shadow-2xl mx-4 w-auto"
+              className="rounded-lg border border-black border-solid opacity-80 shadow-xl mx-3 w-60 h-9"
               id="searchBar"
               type="text"
-              placeholder="Rechercher une recette"
+              placeholder="   Search"
               onChange={(e) => setNewSearch(e.target.value)}
             />
+            <span className="pr-5">
+              <SearchIcon sx={{ fontSize: 36, color: '#FDB500' }} />
+            </span>
           </label>
         </form>
       </div>
