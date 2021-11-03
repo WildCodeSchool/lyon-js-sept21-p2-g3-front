@@ -29,6 +29,7 @@ function App() {
       // Use this data to update the state
 
       .then((data) => {
+        console.log(data);
         // data.hits contains all of the different recipes existing according to the input of the user
         setRecipes(data.hits);
       });
@@ -48,7 +49,6 @@ function App() {
   });
 
   useEffect(() => {
-    console.log(scroll);
     if (scroll.direction === 'up') {
       setHeight((prevHeight) => {
         const newHeight = prevHeight - scroll.deltaY;
@@ -73,7 +73,7 @@ function App() {
       <div
         id="main"
         ref={mainRef}
-        className="flex-grow overflow-y-scroll bg-background"
+        className="flex-grow overflow-y-scroll bg-third bg-opacity-30"
       >
         <Switch>
           <Route exact path="/">

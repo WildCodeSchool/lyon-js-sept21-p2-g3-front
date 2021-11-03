@@ -23,7 +23,14 @@ export default function IngredientList() {
   };
 
   return (
-    <List sx={{ width: '100%', maxWidth: 600, margin: 'auto' }}>
+    <List
+      sx={{
+        width: '100%',
+        maxWidth: 600,
+        margin: 'auto',
+        color: '#2E1F27',
+      }}
+    >
       {[0, 1, 2, 3, 5, 6, 7, 8, 9, 10].map((value) => {
         const labelId = `checkbox-list-secondary-label-${value}`;
         return (
@@ -35,9 +42,9 @@ export default function IngredientList() {
                 checked={checked.indexOf(value) !== -1}
                 inputProps={{ 'aria-labelledby': labelId }}
                 sx={{
-                  color: '#FECACA',
+                  color: '#2E1F27',
                   '&.Mui-checked': {
-                    color: 'green',
+                    color: '#DD7230',
                   },
                 }}
               />
@@ -49,6 +56,7 @@ export default function IngredientList() {
                 <Avatar
                   alt={`Avatar n°${value + 1}`}
                   src={`/static/images/avatar/${value + 1}.jpg`}
+                  sx={{ border: '#2E1F27' }}
                 />
               </ListItemAvatar>
               <ListItemText id={labelId} primary={`item ${value + 1}`} />
