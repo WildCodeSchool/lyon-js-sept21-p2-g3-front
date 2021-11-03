@@ -8,7 +8,6 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 
 function Footer({ height }) {
-  console.log(height);
   return (
     <div id="footer" style={{ height }}>
       <ul className="flex flex-row justify-between bg-blue-200 h-15 py-2">

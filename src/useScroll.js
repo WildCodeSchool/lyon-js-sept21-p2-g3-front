@@ -49,7 +49,6 @@ export default function useScroll(options) {
 
   const scrollFunc = useCallback(() => {
     const yOffset = getScrollOffset('y');
-    console.log(yOffset);
 
     setScroll((prev) => ({
       y: yOffset,
