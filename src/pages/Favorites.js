@@ -1,20 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import RecipeTile from '../components/RecipeTile';
+import FavoritesContext from '../contexts/FavoritesContexts';
 // import RecipeTile from '../components/RecipeTile';
 
 function Favorites() {
-  const [favoritesId, setFavoritesId] = useState([]);
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
 
-  const getFavoritesId = () => {
-    axios
-      .get('http://localhost:5000/favorites')
-      .then((response) => response.data)
-      .then((data) => {
-        setFavoritesId(data);
-      });
-  };
+  const { favoritesid, getfavoritesid } = useContext(FavoritesContext);
 
   const getFavorite = (favoriteId) => {
     return axios
@@ -27,13 +20,13 @@ function Favorites() {
 
   useEffect(() => {
     Promise.all(
-      favoritesId.map((id) => {
+      favoritesid.map((id) => {
         return getFavorite(id);
       })
     ).then((favoritesObject) => setFavoriteRecipes(favoritesObject));
-  }, [favoritesId]);
+  }, [favoritesid]);
 
-  useEffect(() => getFavoritesId(), []);
+  useEffect(() => getfavoritesid(), []);
 
   return (
     <div
