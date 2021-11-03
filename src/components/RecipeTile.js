@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const RecipeTile = ({ recipeId, imgSrc, imgAlt }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
+  const id = recipeId.split('#')[1];
+
   useEffect(() => {
-    console.log(isFavorite);
-    console.log(recipeId);
+    axios.post(`http://localhost:5000/favorites/${id}`, {
+      isfavorite: isFavorite,
+    });
   }, [isFavorite]);
 
   return (

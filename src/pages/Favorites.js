@@ -45,6 +45,7 @@ function Favorites() {
         return (
           <RecipeTile
             key={favorite.recipe.uri}
+            recipeId={favorite.recipe.uri}
             imgSrc={favorite.recipe.image}
             imgAlt={favorite.recipe.label}
           />
