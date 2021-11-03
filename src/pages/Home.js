@@ -3,11 +3,7 @@ import RecipeTile from '../components/RecipeTile';
 
 function Home({ recipes }) {
   return (
-    <div
-      id="Home"
-      className="flex flex-col justify-center items-center gap-10 pb-8"
-    >
-      <h1 className="text-center">Home</h1>
+    <div id="Home" className="flex flex-col justify-center items-center">
       {recipes.map((info) => {
         return (
           <RecipeTile

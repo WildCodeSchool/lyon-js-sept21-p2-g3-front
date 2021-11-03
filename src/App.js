@@ -42,7 +42,10 @@ function App() {
     <div className="flex flex-col h-screen align-center overflow-hidden">
       <NavBar setSearch={setSearch} />
 
-      <div id="main" className="flex-grow overflow-y-scroll bg-background">
+      <div
+        id="main"
+        className="flex-grow overflow-y-scroll bg-third bg-opacity-30"
+      >
         <Switch>
           <Route exact path="/">
             {' '}
