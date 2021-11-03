@@ -1,9 +1,26 @@
-import React from 'react';
+import axios from 'axios';
+// import { map } from 'leaflet';
+import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import cardData from '../components/DataKeepers';
 
 function Shopkeepers() {
-  console.log(cardData);
+  const [dataShopkeepers, setDataShopkeepers] = useState([]);
+
+  const getDataShopkeepers = () => {
+    axios
+      .get(
+        'https://back.agencebio.org/api/gouv/operateurs/?activit%C3%A9=Production%2C%20Distribution%2C%20Pr%C3%A9paration&departements=69'
+      )
+      .then((response) => response.data)
+      .then((data) => {
+        console.log('data : ', data);
+        console.log('data.items :', data.items);
+        setDataShopkeepers(data.items);
+      });
+  };
+  useEffect(() => {
+    getDataShopkeepers();
+  }, []);
 
   return (
     <>
@@ -16,55 +33,46 @@ function Shopkeepers() {
           id="mapid"
           center={[45.764043, 4.835659]}
           zoom={9.5}
-          scrollWheelZoom={false}
+          scrollWheelZoom
         >
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          {cardData.map((data) => {
+
+          {dataShopkeepers.map((item) => {
             return (
-              <Marker position={[data.gps[0], data.gps[1]]}>
+              <Marker
+                position={[
+                  item.adressesOperateurs[0].lat,
+                  item.adressesOperateurs[0].long,
+                ]}
+              >
                 <Popup>
-                  {data.title} <br />, {data.adress}
+                  {item.raisonSociale}
+                  {item.adressesOperateurs[0].lieu}
+                  {item.adressesOperateurs[0].ville}
                 </Popup>
               </Marker>
             );
           })}
-
-          {/* <Marker position={[45.85147, 4.87585]}>
-            <Popup>
-              Les jardins du plateau. <br /> Cailloux sur Fontaines.
-            </Popup>
-          </Marker>
-          <Marker position={[45.747665, 4.739877]}>
-            <Popup>
-              La ferme lyonnaise. <br /> Craponne.
-            </Popup>
-          </Marker>
-          <Marker position={[45.683095, 4.674997]}>
-            <Popup>
-              Les fruits en folie. <br /> Messimy.
-            </Popup>
-          </Marker>
-          <Marker position={[45.666072, 4.717867]}>
-            <Popup>
-              La ferme d'Orliénas. <br /> Orliénas.
-            </Popup>
-          </Marker> */}
         </MapContainer>
       </div>
       <section className=" bg-four container">
         <div className="m-8">
-          {cardData.map((item) => {
+          {dataShopkeepers.map((item) => {
             return (
               <div className="mx-0 mb-8 text-center">
                 <div className="p-0 overflow-hidden h-100 shadow-lg bg-background bg-opacity-60 rounded-md">
-                  <img src={item.img} alt="" className="card-img-top w-full" />
+                  {/* <img src={item.img} alt="" className="card-img-top w-full" /> */}
                   <div className="card-body">
-                    <h2 className="keeper-title">{item.title}</h2>
-                    <p className="keeper-text">{item.description}</p>
-                    <p className="keeper-adress">{item.adress}</p>
+                    <h2 className="keeper-title">{item.raisonSociale}</h2>
+                    {/* <p className="keeper-text">{item.categories}</p> */}
+                    <p className="keeper-adress">
+                      {item.adressesOperateurs[0].lieu} <br />
+                      {item.adressesOperateurs[0].codePostal} <br />
+                      {item.adressesOperateurs[0].ville}
+                    </p>
                   </div>
                 </div>
               </div>
