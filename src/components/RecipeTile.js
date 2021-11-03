@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 
 const RecipeTile = ({ recipeId, imgSrc, imgAlt }) => {
@@ -34,9 +35,11 @@ const RecipeTile = ({ recipeId, imgSrc, imgAlt }) => {
               }}
             >
               {' '}
-              <FavoriteBorderIcon
-                sx={{ fontSize: 45, color: '#DD7230' }}
-              />{' '}
+              {isFavorite ? (
+                <FavoriteIcon sx={{ fontSize: 45, color: '#DD7230' }} />
+              ) : (
+                <FavoriteBorderIcon sx={{ fontSize: 45, color: '#DD7230' }} />
+              )}{' '}
             </div>{' '}
             <Link to="/addtoplanning">
               <span className="flex items-center justify-center bg-recipeWhite absolute z-20 right-5 -top-8 w-16 h-16 rounded-full">
