@@ -28,7 +28,7 @@ const RecipeTile = ({ recipeId, imgSrc, imgAlt }) => {
               className="flex items-center justify-center bg-recipeWhite absolute z-20 left-5 -top-8 w-16 h-16 rounded-full"
               onClick={() => {
                 setIsFavorite(!isFavorite);
-                axios.post(`http://localhost:5000/${id}`, {
+                axios.post(`http://localhost:5000/favorites/${id}`, {
                   isfavorite: isFavorite,
                 });
               }}
