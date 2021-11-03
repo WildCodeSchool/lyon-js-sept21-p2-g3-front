@@ -51,7 +51,9 @@ function App() {
           <Route exact path="/recipe/:id" component={RecipeDetails} />
           <Route path="/favorites" component={Favorites} />
           <Route path="/shopping-list" component={ShoppingList} />
-          <Route path="/planning" component={Planning} />
+          <Route path="/planning">
+            <Planning />
+          </Route>
           <Route path="/shopkeepers" component={Shopkeepers} />
         </Switch>
       </div>
