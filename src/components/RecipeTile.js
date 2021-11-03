@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -6,12 +6,6 @@ const RecipeTile = ({ recipeId, imgSrc, imgAlt }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const id = recipeId.split('#')[1];
-
-  useEffect(() => {
-    axios.post(`http://localhost:5000/favorites/${id}`, {
-      isfavorite: isFavorite,
-    });
-  }, [isFavorite]);
 
   return (
     <div
@@ -25,7 +19,12 @@ const RecipeTile = ({ recipeId, imgSrc, imgAlt }) => {
         <div id="RecipeTitleContainer" className="relative">
           <span
             className="flex items-center justify-center bg-recipeWhite absolute z-20 left-6 -top-10 w-16 h-16 rounded-full "
-            onClick={() => setIsFavorite(!isFavorite)}
+            onClick={() => {
+              setIsFavorite(!isFavorite);
+              axios.post(`http://localhost:5000/favorites/${id}`, {
+                isfavorite: isFavorite,
+              });
+            }}
           >
             {' '}
             H{' '}
