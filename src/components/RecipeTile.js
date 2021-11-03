@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const RecipeTile = ({ imgSrc, imgAlt }) => {
+const RecipeTile = ({ key, imgSrc, imgAlt }) => {
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  useEffect(() => {
+    console.log(isFavorite);
+    console.log(key);
+  }, [isFavorite]);
+
   return (
     <div
       id="RecipeTile"
@@ -12,7 +19,10 @@ const RecipeTile = ({ imgSrc, imgAlt }) => {
           <img src={imgSrc} alt={imgAlt} className="rounded-t-3xl" />
           <div id="RecipeTitleContainer" className="relative">
             <Link to="/favorites">
-              <span className="flex items-center justify-center bg-recipeWhite absolute z-20 left-6 -top-10 w-16 h-16 rounded-full">
+              <span
+                className="flex items-center justify-center bg-recipeWhite absolute z-20 left-6 -top-10 w-16 h-16 rounded-full"
+                onClick={() => setIsFavorite(!isFavorite)}
+              >
                 {' '}
                 H{' '}
               </span>{' '}
