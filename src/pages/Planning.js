@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import RecipeTile from '../components/RecipeTile';
+import Calendar from '../components/Calendar';
 
 const Planning = () => {
   // const [midDayId, setMidDay] = useState(
@@ -39,8 +40,6 @@ const Planning = () => {
   //   }
   // }, [selectedDay]);
 
-  const day = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
-
   const listPlanning = [
     {
       date: 'Mercredi 03 2021',
@@ -75,18 +74,7 @@ const Planning = () => {
   return (
     <>
       <div className="grid justify-items-center">
-        <ul className="flex flex-row space-x-3 pt-7">
-          {day.map((day) => (
-            <li
-              className=" border-2 rounded-full h-8 w-8 flex items-center justify-center font-extrabold bg-third bg-opacity-30 border-third text-background box-shadow-day"
-              // onClick={() => {
-              //   setSelectedDay(!selectedDay);
-              // }}
-            >
-              {day}
-            </li>
-          ))}
-        </ul>
+        <Calendar />
         {listPlanning.map((recipe) => {
           return (
             <RecipeTile
