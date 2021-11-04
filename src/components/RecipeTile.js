@@ -49,7 +49,7 @@ const RecipeTile = ({ recipeId, imgSrc, imgAlt }) => {
               </span>{' '}
             </Link>
             <div className="flex items-center justify-center h-20 bg-recipeWhite rounded-b-2xl text-primary font-bold">
-              <Link to="/recipe:id">
+              <Link to={`/recipe/${recipeId}`}>
                 <h3 id="RecipeTitle"> {imgAlt} </h3>
               </Link>
             </div>
