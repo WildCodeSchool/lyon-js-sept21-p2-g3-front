@@ -9,6 +9,7 @@ import ShoppingList from './pages/ShoppingList';
 import Planning from './pages/Planning';
 import Shopkeepers from './pages/Shopkeepers';
 import RecipeDetails from './pages/RecipeDetails';
+import { FavoritesContextProviders } from './contexts/FavoritesContexts';
 import useScroll from './useScroll';
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
     axios
 
       .get(
-        `https://api.edamam.com/api/recipes/v2?type=public&q=${search}&app_id=f3601de5&app_key=960c7d96572cfedbc3eb6bffbfaf24c9`
+        `https://api.edamam.com/api/recipes/v2?type=public&q=${search}&app_id=${process.env.REACT_APP_ID_EDAMAM}&app_key=${process.env.REACT_APP_KEY_EDAMAM}`
       )
 
       // Extract the DATA from the received response
@@ -67,28 +68,29 @@ function App() {
   }, [scroll]);
 
   return (
-    <div className="flex flex-col h-screen align-center overflow-hidden">
-      <NavBar setSearch={setSearch} />
+    <FavoritesContextProviders>
+      <div className="flex flex-col h-screen align-center overflow-hidden">
+        <NavBar setSearch={setSearch} />
 
-      <div
-        id="main"
-        ref={mainRef}
-        className="flex-grow overflow-y-scroll bg-third bg-opacity-30"
-      >
-        <Switch>
-          <Route exact path="/">
-            {' '}
-            <Home recipes={recipes} />
-          </Route>
-          <Route exact path="/recipe/:id" component={RecipeDetails} />
-          <Route path="/favorites" component={Favorites} />
-          <Route path="/shopping-list" component={ShoppingList} />
-          <Route path="/planning" component={Planning} />
-          <Route path="/shopkeepers" component={Shopkeepers} />
-        </Switch>
+        <div
+          id="main"
+          className="flex-grow overflow-y-scroll bg-third bg-opacity-30"
+        >
+          <Switch>
+            <Route exact path="/">
+              {' '}
+              <Home recipes={recipes} />
+            </Route>
+            <Route exact path="/recipe/:id" component={RecipeDetails} />
+            <Route path="/favorites" component={Favorites} />
+            <Route path="/shopping-list" component={ShoppingList} />
+            <Route path="/planning" component={Planning} />
+            <Route path="/shopkeepers" component={Shopkeepers} />
+          </Switch>
+        </div>
+        <Footer height={height} />
       </div>
-      <Footer height={height} />
-    </div>
+    </FavoritesContextProviders>
   );
 }
 
