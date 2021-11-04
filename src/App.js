@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 import NavBar from './components/NavBar';
@@ -9,6 +9,8 @@ import ShoppingList from './pages/ShoppingList';
 import Planning from './pages/Planning';
 import Shopkeepers from './pages/Shopkeepers';
 import RecipeDetails from './pages/RecipeDetails';
+import { FavoritesContextProviders } from './contexts/FavoritesContexts';
+import useScroll from './useScroll';
 
 function App() {
   // construction of the arrays with the wanted informations from the api for the app
@@ -18,7 +20,7 @@ function App() {
     axios
 
       .get(
-        `https://api.edamam.com/api/recipes/v2?type=public&q=${search}&app_id=f3601de5&app_key=960c7d96572cfedbc3eb6bffbfaf24c9`
+        `https://api.edamam.com/api/recipes/v2?type=public&q=${search}&app_id=${process.env.REACT_APP_ID_EDAMAM}&app_key=${process.env.REACT_APP_KEY_EDAMAM}`
       )
 
       // Extract the DATA from the received response
@@ -38,30 +40,57 @@ function App() {
     getRecipe();
   }, [search]);
 
-  return (
-    <div className="flex flex-col h-screen align-center overflow-hidden">
-      <NavBar setSearch={setSearch} />
+  const mainRef = useRef();
 
-      <div
-        id="main"
-        className="flex-grow overflow-y-scroll bg-third bg-opacity-30"
-      >
-        <Switch>
-          <Route exact path="/">
-            {' '}
-            <Home recipes={recipes} />
-          </Route>
-          <Route exact path="/recipe/:id" component={RecipeDetails} />
-          <Route path="/favorites" component={Favorites} />
-          <Route path="/shopping-list" component={ShoppingList} />
-          <Route path="/planning">
-            <Planning />
-          </Route>
-          <Route path="/shopkeepers" component={Shopkeepers} />
-        </Switch>
+  const searchBoxHeight = 70;
+  const [height, setHeight] = useState(searchBoxHeight);
+  const scroll = useScroll({
+    wait: 50,
+    element: mainRef.current || window,
+  });
+
+  useEffect(() => {
+    if (scroll.direction === 'up') {
+      setHeight((prevHeight) => {
+        const newHeight = prevHeight - scroll.deltaY;
+        return newHeight > searchBoxHeight ? searchBoxHeight : newHeight;
+      });
+    } else if (scroll.direction === 'down') {
+      setHeight((prevHeight) => {
+        // const leftToScroll =
+        //  document.documentElement.scrollHeight - scroll.y - window.innerHeight;
+        // if (leftToScroll <= searchBoxHeight) setHeight(searchBoxHeight);
+
+        const newHeight = prevHeight - scroll.deltaY;
+        return newHeight < 0 ? 0 : newHeight;
+      });
+    }
+  }, [scroll]);
+
+  return (
+    <FavoritesContextProviders>
+      <div className="flex flex-col h-screen align-center overflow-hidden">
+        <NavBar setSearch={setSearch} />
+
+        <div
+          id="main"
+          className="flex-grow overflow-y-scroll bg-third bg-opacity-30"
+        >
+          <Switch>
+            <Route exact path="/">
+              {' '}
+              <Home recipes={recipes} />
+            </Route>
+            <Route exact path="/recipe/:id" component={RecipeDetails} />
+            <Route path="/favorites" component={Favorites} />
+            <Route path="/shopping-list" component={ShoppingList} />
+            <Route path="/planning" component={Planning} />
+            <Route path="/shopkeepers" component={Shopkeepers} />
+          </Switch>
+        </div>
+        <Footer height={height} />
       </div>
-      <Footer />
-    </div>
+    </FavoritesContextProviders>
   );
 }
 
