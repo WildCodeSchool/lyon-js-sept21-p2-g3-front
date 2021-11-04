@@ -11,6 +11,8 @@ import Shopkeepers from './pages/Shopkeepers';
 import RecipeDetails from './pages/RecipeDetails';
 import { FavoritesContextProviders } from './contexts/FavoritesContexts';
 
+require('dotenv').config();
+
 function App() {
   // construction of the arrays with the wanted informations from the api for the app
   const [recipes, setRecipes] = useState([]);

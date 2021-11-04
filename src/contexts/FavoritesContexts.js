@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import axios from 'axios';
+import MyFoodAPI from '../MyFoodAPI';
 
 const FavoritesContext = createContext();
 
@@ -7,8 +7,7 @@ export const FavoritesContextProviders = ({ children }) => {
   const [favoritesId, setFavoritesId] = useState([]);
 
   const getFavoritesId = () => {
-    axios
-      .get('http://localhost:5000/favorites')
+    MyFoodAPI.get(`/favorites`)
       .then((response) => response.data)
       .then((data) => {
         setFavoritesId(data);
@@ -16,9 +15,7 @@ export const FavoritesContextProviders = ({ children }) => {
   };
 
   return (
-    <FavoritesContext.Provider
-      value={{ favoritesid: favoritesId, getfavoritesid: getFavoritesId }}
-    >
+    <FavoritesContext.Provider value={{ favoritesId, getFavoritesId }}>
       {children}
     </FavoritesContext.Provider>
   );

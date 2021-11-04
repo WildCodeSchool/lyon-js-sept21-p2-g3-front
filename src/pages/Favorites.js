@@ -7,7 +7,7 @@ import FavoritesContext from '../contexts/FavoritesContexts';
 function Favorites() {
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
 
-  const { favoritesid, getfavoritesid } = useContext(FavoritesContext);
+  const { favoritesId, getFavoritesId } = useContext(FavoritesContext);
 
   const getFavorite = (favoriteId) => {
     return axios
@@ -20,13 +20,13 @@ function Favorites() {
 
   useEffect(() => {
     Promise.all(
-      favoritesid.map((id) => {
+      favoritesId.map((id) => {
         return getFavorite(id);
       })
     ).then((favoritesObject) => setFavoriteRecipes(favoritesObject));
-  }, [favoritesid]);
+  }, [favoritesId]);
 
-  useEffect(() => getfavoritesid(), []);
+  useEffect(() => getFavoritesId(), []);
 
   return (
     <div

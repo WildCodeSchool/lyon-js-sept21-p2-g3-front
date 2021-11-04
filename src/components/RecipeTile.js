@@ -1,15 +1,15 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import FavoritesContext from '../contexts/FavoritesContexts';
+import MyFoodAPI from '../MyFoodAPI';
 
 const RecipeTile = ({ recipeId, imgSrc, imgAlt }) => {
   const id = recipeId.split('#')[1];
-  const { favoritesid, getfavoritesid } = useContext(FavoritesContext);
-  const [isFavorite, setIsFavorite] = useState(favoritesid.includes(id));
+  const { favoritesId, getFavoritesId } = useContext(FavoritesContext);
+  const [isFavorite, setIsFavorite] = useState(favoritesId.includes(id));
 
   return (
     <div>
@@ -30,11 +30,9 @@ const RecipeTile = ({ recipeId, imgSrc, imgAlt }) => {
               className="flex items-center justify-center bg-recipeWhite absolute z-20 left-5 -top-8 w-16 h-16 rounded-full"
               onClick={() => {
                 setIsFavorite(!isFavorite);
-                axios
-                  .post(`http://localhost:5000/favorites/${id}`, {
-                    isfavorite: isFavorite,
-                  })
-                  .then(getfavoritesid());
+                MyFoodAPI.post(`/favorites/${id}`, {
+                  isfavorite: isFavorite,
+                }).then(getFavoritesId());
               }}
             >
               {' '}
