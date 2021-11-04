@@ -11,8 +11,6 @@ import Shopkeepers from './pages/Shopkeepers';
 import RecipeDetails from './pages/RecipeDetails';
 import { FavoritesContextProviders } from './contexts/FavoritesContexts';
 
-require('dotenv').config();
-
 function App() {
   // construction of the arrays with the wanted informations from the api for the app
   const [recipes, setRecipes] = useState([]);
@@ -21,7 +19,7 @@ function App() {
     axios
 
       .get(
-        `https://api.edamam.com/api/recipes/v2?type=public&q=${search}&app_id=f3601de5&app_key=960c7d96572cfedbc3eb6bffbfaf24c9`
+        `https://api.edamam.com/api/recipes/v2?type=public&q=${search}&app_id=${process.env.REACT_APP_ID_EDAMAM}&app_key=${process.env.REACT_APP_KEY_EDAMAM}`
       )
 
       // Extract the DATA from the received response
