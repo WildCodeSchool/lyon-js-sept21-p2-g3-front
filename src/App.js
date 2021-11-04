@@ -9,6 +9,7 @@ import ShoppingList from './pages/ShoppingList';
 import Planning from './pages/Planning';
 import Shopkeepers from './pages/Shopkeepers';
 import RecipeDetails from './pages/RecipeDetails';
+import AddToPlanning from './pages2/AddToPlanning';
 
 function App() {
   // construction of the arrays with the wanted informations from the api for the app
@@ -54,6 +55,7 @@ function App() {
           <Route exact path="/recipe/:id" component={RecipeDetails} />
           <Route path="/favorites" component={Favorites} />
           <Route path="/shopping-list" component={ShoppingList} />
+          <Route path="/addtoplanning" component={AddToPlanning} />
           <Route path="/planning">
             <Planning />
           </Route>
