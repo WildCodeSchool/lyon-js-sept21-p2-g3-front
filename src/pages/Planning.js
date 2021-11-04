@@ -43,34 +43,34 @@ const Planning = () => {
 
   const listPlanning = [
     {
-      date: "Mercredi 03 2021",
-      time: "midday", 
-      title: "lasagne", 
-      img: "https://assets.afcdn.com/recipe/20200408/109520_w1024h1024c1cx1866cy2800.jpg", 
-      id: 'recipe_0f6199b0c6a6283e57cf42056aaf6f1f'
+      date: 'Mercredi 03 2021',
+      time: 'midday',
+      title: 'lasagne',
+      img: 'https://assets.afcdn.com/recipe/20200408/109520_w1024h1024c1cx1866cy2800.jpg',
+      id: 'recipe_0f6199b0c6a6283e57cf42056aaf6f1f',
     },
     {
-      date: "Mercredi 03 2021",
-      time: "night", 
-      title: "lasagne", 
-      img: "https://assets.afcdn.com/recipe/20200408/109520_w1024h1024c1cx1866cy2800.jpg", 
-      id: 'recipe_0f6199b0c6a6283e57cf42056aaf6f1f'
+      date: 'Mercredi 03 2021',
+      time: 'night',
+      title: 'lasagne',
+      img: 'https://assets.afcdn.com/recipe/20200408/109520_w1024h1024c1cx1866cy2800.jpg',
+      id: 'recipe_0f6199b0c6a6283e57cf42056aaf6f1f',
     },
     {
-      date: "Jeudi 04 2021",
-      time: "midday", 
-      title: "lasagne", 
-      img: "https://assets.afcdn.com/recipe/20200408/109520_w1024h1024c1cx1866cy2800.jpg", 
-      id: 'recipe_0f6199b0c6a6283e57cf42056aaf6f1f'
+      date: 'Jeudi 04 2021',
+      time: 'midday',
+      title: 'lasagne',
+      img: 'https://assets.afcdn.com/recipe/20200408/109520_w1024h1024c1cx1866cy2800.jpg',
+      id: 'recipe_0f6199b0c6a6283e57cf42056aaf6f1f',
     },
     {
-      date: "Jeudi 04 2021",
-      time: "night", 
-      title: "lasagne", 
-      img: "https://assets.afcdn.com/recipe/20200408/109520_w1024h1024c1cx1866cy2800.jpg", 
-      id: 'recipe_0f6199b0c6a6283e57cf42056aaf6f1f'
-    }
-  ]
+      date: 'Jeudi 04 2021',
+      time: 'night',
+      title: 'lasagne',
+      img: 'https://assets.afcdn.com/recipe/20200408/109520_w1024h1024c1cx1866cy2800.jpg',
+      id: 'recipe_0f6199b0c6a6283e57cf42056aaf6f1f',
+    },
+  ];
 
   return (
     <>
@@ -78,7 +78,7 @@ const Planning = () => {
         <ul className="flex flex-row space-x-3 pt-7">
           {day.map((day) => (
             <li
-              className=" border-2 rounded-full h-8 w-8 flex items-center justify-center font-extrabold bg-third bg-opacity-30 border-third text-background shadow-xl"
+              className=" border-2 rounded-full h-8 w-8 flex items-center justify-center font-extrabold bg-third bg-opacity-30 border-third text-background box-shadow-day"
               // onClick={() => {
               //   setSelectedDay(!selectedDay);
               // }}
@@ -87,15 +87,16 @@ const Planning = () => {
             </li>
           ))}
         </ul>
-            {listPlanning.map((recipe) => {
-              return(
-              <RecipeTile 
-              imgAlt={recipe.title} 
-              imgSrc={recipe.img} 
-              date={recipe.date} 
-              time={recipe.time}/>
-              );
-            })}
+        {listPlanning.map((recipe) => {
+          return (
+            <RecipeTile
+              imgAlt={recipe.title}
+              imgSrc={recipe.img}
+              date={recipe.date}
+              time={recipe.time}
+            />
+          );
+        })}
       </div>
     </>
   );

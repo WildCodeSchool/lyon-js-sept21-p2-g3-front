@@ -19,3 +19,11 @@ code {
 .active svg {
   color: #dd7230;
 }
+
+.box-shadow {
+  box-shadow: 10px 7px 5px rgba(0, 0, 0, 0.2)
+}
+
+.box-shadow-day{
+  box-shadow: 7px 3px 1px rgba(0, 0, 0, 0.2)
+}
