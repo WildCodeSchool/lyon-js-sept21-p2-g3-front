@@ -8,6 +8,7 @@ function Home({ recipes }) {
         return (
           <RecipeTile
             key={info.recipe.uri}
+            recipeId={info.recipe.uri}
             imgAlt={info.recipe.label}
             imgSrc={info.recipe.image}
           />
