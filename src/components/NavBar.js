@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 
 function NavBar({ setSearch }) {
   const [newSearch, setNewSearch] = useState('');
+
+  const history = useHistory();
 
   return (
     <>
@@ -24,6 +26,7 @@ function NavBar({ setSearch }) {
           onSubmit={(e) => {
             e.preventDefault();
             setSearch(newSearch);
+            history.push('/');
           }}
         >
           <label htmlFor="searchBar">
