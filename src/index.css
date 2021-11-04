@@ -28,7 +28,7 @@ code {
   box-shadow: 7px 3px 1px rgba(0, 0, 0, 0.2);
 }
 
-  #footer {
+#footer {
   transition: height 0.1s ease-out;
   will-change: height;
   position: fixed;
