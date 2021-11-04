@@ -14,6 +14,7 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.23.0",
+    "lodash": "^4.17.21",
     "leaflet": "^1.7.1",
     "leaflet.locatecontrol": "^0.74.0",
     "material-ui-icons": "^1.0.0-beta.36",

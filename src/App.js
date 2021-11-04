@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 import NavBar from './components/NavBar';
@@ -9,6 +9,7 @@ import ShoppingList from './pages/ShoppingList';
 import Planning from './pages/Planning';
 import Shopkeepers from './pages/Shopkeepers';
 import RecipeDetails from './pages/RecipeDetails';
+import useScroll from './useScroll';
 
 function App() {
   // construction of the arrays with the wanted informations from the api for the app
@@ -38,12 +39,40 @@ function App() {
     getRecipe();
   }, [search]);
 
+  const mainRef = useRef();
+
+  const searchBoxHeight = 70;
+  const [height, setHeight] = useState(searchBoxHeight);
+  const scroll = useScroll({
+    wait: 50,
+    element: mainRef.current || window,
+  });
+
+  useEffect(() => {
+    if (scroll.direction === 'up') {
+      setHeight((prevHeight) => {
+        const newHeight = prevHeight - scroll.deltaY;
+        return newHeight > searchBoxHeight ? searchBoxHeight : newHeight;
+      });
+    } else if (scroll.direction === 'down') {
+      setHeight((prevHeight) => {
+        // const leftToScroll =
+        //  document.documentElement.scrollHeight - scroll.y - window.innerHeight;
+        // if (leftToScroll <= searchBoxHeight) setHeight(searchBoxHeight);
+
+        const newHeight = prevHeight - scroll.deltaY;
+        return newHeight < 0 ? 0 : newHeight;
+      });
+    }
+  }, [scroll]);
+
   return (
     <div className="flex flex-col h-screen align-center overflow-hidden">
       <NavBar setSearch={setSearch} />
 
       <div
         id="main"
+        ref={mainRef}
         className="flex-grow overflow-y-scroll bg-third bg-opacity-30"
       >
         <Switch>
@@ -58,7 +87,7 @@ function App() {
           <Route path="/shopkeepers" component={Shopkeepers} />
         </Switch>
       </div>
-      <Footer />
+      <Footer height={height} />
     </div>
   );
 }
