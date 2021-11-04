@@ -2,7 +2,6 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { green } from '@mui/material/colors';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import StorefrontIcon from '@mui/icons-material/Storefront';
@@ -10,30 +9,30 @@ import StorefrontIcon from '@mui/icons-material/Storefront';
 function Footer() {
   return (
     <div>
-      <ul className="flex flex-row justify-between bg-blue-200 h-15 py-2">
+      <ul className="flex flex-row justify-between bg-background h-15 py-2 px-2">
         <li>
           <NavLink activeClassName="active" exact to="/">
-            <HomeIcon sx={{ fontSize: 60, color: green[500] }} />
+            <HomeIcon sx={{ fontSize: 55, color: '#FDB500' }} />
           </NavLink>
         </li>
         <li>
           <NavLink activeClassName="active" to="/favorites">
-            <FavoriteIcon sx={{ fontSize: 60, color: green[500] }} />
+            <FavoriteIcon sx={{ fontSize: 55, color: '#FDB500' }} />
           </NavLink>
         </li>
         <li>
           <NavLink activeClassName="active" to="/shopping-list">
-            <ShoppingBasketIcon sx={{ fontSize: 60, color: green[500] }} />
+            <ShoppingBasketIcon sx={{ fontSize: 55, color: '#FDB500' }} />
           </NavLink>
         </li>
         <li>
           <NavLink activeClassName="active" to="/planning">
-            <CalendarTodayIcon sx={{ fontSize: 58, color: green[500] }} />
+            <CalendarTodayIcon sx={{ fontSize: 50, color: '#FDB500' }} />
           </NavLink>
         </li>
         <li>
           <NavLink activeClassName="active" to="/shopkeepers">
-            <StorefrontIcon sx={{ fontSize: 60, color: green[500] }} />
+            <StorefrontIcon sx={{ fontSize: 55, color: '#FDB500' }} />
           </NavLink>
         </li>
       </ul>
