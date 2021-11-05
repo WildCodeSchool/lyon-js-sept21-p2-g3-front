@@ -11,6 +11,7 @@ import Shopkeepers from './pages/Shopkeepers';
 import RecipeDetails from './pages/RecipeDetails';
 import AddToPlanning from './pages2/AddToPlanning';
 import { FavoritesContextProviders } from './contexts/FavoritesContexts';
+import { AddToPlanningContextProvider } from './contexts/AddToPlanningContext';
 import useScroll from './useScroll';
 
 function App() {
@@ -69,30 +70,32 @@ function App() {
   }, [scroll]);
 
   return (
-    <FavoritesContextProviders>
-      <div className="flex flex-col h-screen align-center overflow-hidden">
-        <NavBar setSearch={setSearch} />
+    <AddToPlanningContextProvider>
+      <FavoritesContextProviders>
+        <div className="flex flex-col h-screen align-center overflow-hidden">
+          <NavBar setSearch={setSearch} />
 
-        <div
-          id="main"
-          className="flex-grow overflow-y-scroll bg-third bg-opacity-30"
-        >
-          <Switch>
-            <Route exact path="/">
-              {' '}
-              <Home recipes={recipes} />
-            </Route>
-            <Route exact path="/recipe/:id" component={RecipeDetails} />
-            <Route path="/favorites" component={Favorites} />
-            <Route path="/shopping-list" component={ShoppingList} />
-            <Route path="/planning" component={Planning} />
-            <Route path="/shopkeepers" component={Shopkeepers} />
-            <Route path="/addtoplanning" component={AddToPlanning} />
-          </Switch>
+          <div
+            id="main"
+            className="flex-grow overflow-y-scroll bg-third bg-opacity-30"
+          >
+            <Switch>
+              <Route exact path="/">
+                {' '}
+                <Home recipes={recipes} />
+              </Route>
+              <Route exact path="/recipe/:id" component={RecipeDetails} />
+              <Route path="/favorites" component={Favorites} />
+              <Route path="/shopping-list" component={ShoppingList} />
+              <Route path="/planning" component={Planning} />
+              <Route path="/shopkeepers" component={Shopkeepers} />
+              <Route path="/addtoplanning/:id" component={AddToPlanning} />
+            </Switch>
+          </div>
+          <Footer height={height} />
         </div>
-        <Footer height={height} />
-      </div>
-    </FavoritesContextProviders>
+      </FavoritesContextProviders>
+    </AddToPlanningContextProvider>
   );
 }
 

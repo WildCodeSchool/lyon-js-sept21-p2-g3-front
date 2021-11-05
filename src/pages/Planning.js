@@ -1,18 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import RecipeTile from '../components/RecipeTile';
 import Calendar from '../components/Calendar';
-import MyFoodAPI from '../MyFoodAPI';
+import AddToPlanningContext from '../contexts/AddToPlanningContext';
 
 const Planning = () => {
-  const [listPlanning, setListPlanning] = useState([]);
-
-  const getPlanning = () => {
-    MyFoodAPI.get('/planning')
-      .then((response) => response.data)
-      .then((data) => {
-        setListPlanning(data);
-      });
-  };
+  const { listPlanning, getPlanning } = useContext(AddToPlanningContext);
 
   useEffect(() => getPlanning(), []);
 
