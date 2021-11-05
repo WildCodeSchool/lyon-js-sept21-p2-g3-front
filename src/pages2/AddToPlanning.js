@@ -1,4 +1,3 @@
-import FormControl from '@mui/material/FormLabel';
 import InputLabel from '@mui/material/InputLabel';
 import { Checkbox, Button } from '@mui/material';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -12,6 +11,9 @@ import RecipeTile from '../components/RecipeTile';
 const AddToPlanning = () => {
   const { id } = useParams();
   const [recipe, setRecipe] = useState();
+  const [date, setDate] = useState();
+  const [lunch, setLunch] = useState(true);
+  const [diner, setDiner] = useState(false);
 
   const getRecipe = () => {
     axios
@@ -40,13 +42,51 @@ const AddToPlanning = () => {
           imgAlt={recipe.label}
           imgSrc={recipe.image}
         />
-        <FormControl className="flex flex-col items-center mt-10">
+        <form
+          className="flex flex-col items-center mt-10"
+          onSubmit={(e) => {
+            e.preventDefault();
+            console.log(id, date, lunch, diner);
+            axios.post(
+              `${process.env.REACT_APP_URL_API_SERVER}/addtoplanning/`,
+              { id, date, lunch, diner }
+            );
+          }}
+        >
           <InputLabel htmlFor="my-input">When ? </InputLabel>
-          <Input id="my-input" type="date" />
-          <FormControlLabel control={<Checkbox />} label="Noon" />
-          <FormControlLabel control={<Checkbox />} label="Night" />
-          <Button variant="contained">Add to planning</Button>
-        </FormControl>
+          <Input
+            id="my-input"
+            type="date"
+            onChange={(e) => {
+              setDate(e.target.value);
+            }}
+            required
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                onClick={() => {
+                  setLunch(!lunch);
+                }}
+                defaultChecked
+              />
+            }
+            label="Lunch"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                onClick={() => {
+                  setDiner(!diner);
+                }}
+              />
+            }
+            label="Diner"
+          />
+          <Button type="submit" variant="contained">
+            Add to planning
+          </Button>
+        </form>
       </div>
     </>
   );
