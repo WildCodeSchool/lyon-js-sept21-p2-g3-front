@@ -1,7 +1,32 @@
 import axios from 'axios';
-// import { map } from 'leaflet';
+// import { Map } from 'leaflet';
 import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  useMapEvents,
+} from 'react-leaflet';
+
+function LocationMarker() {
+  const [position, setPosition] = useState(null);
+  const map = useMapEvents({
+    click() {
+      map.locate();
+    },
+    locationfound(e) {
+      setPosition(e.latlng);
+      map.flyTo(e.latlng, map.getZoom());
+    },
+  });
+
+  return position === null ? null : (
+    <Marker position={position}>
+      <Popup>Vous êtes ici !</Popup>
+    </Marker>
+  );
+}
 
 function Shopkeepers() {
   const [dataShopkeepers, setDataShopkeepers] = useState([]);
@@ -109,10 +134,10 @@ function Shopkeepers() {
         </h1>
         <MapContainer
           className="h-80"
-          id="mapid"
+          id="map"
           center={[45.764043, 4.835659]}
           zoom={9.5}
-          scrollWheelZoom
+          scrollWheelZoom={false}
         >
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -135,6 +160,7 @@ function Shopkeepers() {
               </Marker>
             );
           })}
+          <LocationMarker />
         </MapContainer>
       </div>
       <section className=" bg-four container">
