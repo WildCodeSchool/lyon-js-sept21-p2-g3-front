@@ -36,7 +36,7 @@ const AddToPlanning = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center pb-24">
+      <div className="flex flex-col items-center pb-24 ">
         <RecipeTile
           recipeId={recipe.uri}
           imgAlt={recipe.label}
@@ -49,7 +49,14 @@ const AddToPlanning = () => {
             console.log(id, date, lunch, diner);
             axios.post(
               `${process.env.REACT_APP_URL_API_SERVER}/addtoplanning/`,
-              { id, date, lunch, diner }
+              {
+                id,
+                date,
+                lunch,
+                diner,
+                image: recipe.image,
+                title: recipe.label,
+              }
             );
           }}
         >

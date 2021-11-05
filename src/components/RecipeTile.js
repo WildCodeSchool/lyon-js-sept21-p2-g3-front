@@ -8,7 +8,7 @@ import Brightness2Icon from '@mui/icons-material/Brightness2';
 import FavoritesContext from '../contexts/FavoritesContexts';
 import MyFoodAPI from '../MyFoodAPI';
 
-const RecipeTile = ({ recipeId, imgSrc, imgAlt, date, time }) => {
+const RecipeTile = ({ recipeId, imgSrc, imgAlt, date, lunch, diner }) => {
   const id = recipeId.split('#')[1];
   const { favoritesId, getFavoritesId } = useContext(FavoritesContext);
   const [isFavorite, setIsFavorite] = useState(favoritesId.includes(id));
@@ -31,13 +31,13 @@ const RecipeTile = ({ recipeId, imgSrc, imgAlt, date, time }) => {
                   {date}
                 </h1>
 
-                {time === 'midday' && (
+                {lunch && (
                   <span className="text-third text-3xl pl-7">
                     <WbSunnyIcon sx={{ fontSize: 40 }} />
                   </span>
                 )}
 
-                {time === 'night' && (
+                {diner && (
                   <span className="text-third text-3xl pl-7">
                     <Brightness2Icon sx={{ fontSize: 40 }} />
                   </span>
