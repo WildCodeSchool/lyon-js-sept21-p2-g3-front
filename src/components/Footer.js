@@ -1,55 +1,38 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import HomeIcon from '@mui/icons-material/Home';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import StorefrontIcon from '@mui/icons-material/Storefront';
 
-function Footer() {
+function Footer({ height }) {
   return (
-    <div>
-      <ul className="flex flex-row justify-between items-center bg-third h-20">
+    <div id="footer" style={{ height }}>
+      <ul className="flex flex-row justify-between bg-background h-15 py-2 px-2">
         <li>
           <NavLink activeClassName="active" exact to="/">
-            <img
-              className=""
-              id="ImgHome"
-              src="https://img.icons8.com/material-outlined/50/000000/home--v2.png"
-              alt="Home"
-            />
+            <HomeIcon sx={{ fontSize: 55, color: '#FDB500' }} />
           </NavLink>
         </li>
         <li>
           <NavLink activeClassName="active" to="/favorites">
-            <img
-              id="ImgHeart"
-              src="https://img.icons8.com/ios-filled/50/000000/like--v1.png"
-              alt="Heart"
-            />
+            <FavoriteIcon sx={{ fontSize: 55, color: '#FDB500' }} />
           </NavLink>
         </li>
         <li>
           <NavLink activeClassName="active" to="/shopping-list">
-            <img
-              id="ImgList"
-              src="https://img.icons8.com/ios-filled/50/000000/hamper.png"
-              alt="List"
-            />
+            <ShoppingBasketIcon sx={{ fontSize: 55, color: '#FDB500' }} />
           </NavLink>
         </li>
         <li>
           <NavLink activeClassName="active" to="/planning">
-            {' '}
-            <img
-              id="ImgPlanning"
-              src="https://img.icons8.com/ios/50/000000/planner.png"
-              alt="Planning"
-            />
+            <CalendarTodayIcon sx={{ fontSize: 50, color: '#FDB500' }} />
           </NavLink>
         </li>
         <li>
           <NavLink activeClassName="active" to="/shopkeepers">
-            <img
-              id="ImgFarmer"
-              src="https://img.icons8.com/external-itim2101-fill-itim2101/64/000000/external-farmer-male-occupation-avatar-itim2101-fill-itim2101-1.png"
-              alt="Farmer"
-            />
+            <StorefrontIcon sx={{ fontSize: 55, color: '#FDB500' }} />
           </NavLink>
         </li>
       </ul>
