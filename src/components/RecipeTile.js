@@ -10,7 +10,7 @@ import MyFoodAPI from '../MyFoodAPI';
 
 const RecipeTile = ({ recipeId, imgSrc, imgAlt, date, lunch, diner }) => {
   const id = recipeId.split('#')[1];
-  const { favoritesId, getFavoritesId } = useContext(FavoritesContext);
+  const { favoritesId, setFavoritesId } = useContext(FavoritesContext);
   const [isFavorite, setIsFavorite] = useState(favoritesId.includes(id));
 
   return (
@@ -59,7 +59,14 @@ const RecipeTile = ({ recipeId, imgSrc, imgAlt, date, lunch, diner }) => {
                 setIsFavorite(!isFavorite);
                 MyFoodAPI.post(`/favorites/${id}`, {
                   isfavorite: isFavorite,
-                }).then(getFavoritesId());
+                }).then(() => {
+                  if (!isFavorite) {
+                    setFavoritesId([...favoritesId, id]);
+                  } else {
+                    const newFavoritesId = favoritesId.filter((i) => i !== id);
+                    setFavoritesId(newFavoritesId);
+                  }
+                });
               }}
             >
               {' '}
