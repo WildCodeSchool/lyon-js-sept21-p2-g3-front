@@ -50,7 +50,7 @@ const AddToPlanning = () => {
             axios.post(
               `${process.env.REACT_APP_URL_API_SERVER}/addtoplanning/`,
               {
-                id,
+                id: `.#${id}`,
                 date,
                 lunch,
                 diner,
