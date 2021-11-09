@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { CircularProgress } from '@mui/material';
+import { Avatar, CircularProgress } from '@mui/material';
 
 const RecipeDetails = () => {
   const { id } = useParams();
@@ -25,12 +25,17 @@ const RecipeDetails = () => {
   }
 
   return (
-    <div>
+    <div className="pb-20">
+      <img className="w-screen" src={recipe.image} alt={recipe.label} />
       <h2> {recipe.label} </h2>
-      <img src={recipe.image} alt={recipe.label} />
-      <ul>
+      <ul className="flex flex-col gap-2 ml-2 mt-4">
         {recipe.ingredients.map((ingredient) => {
-          return <li> {ingredient.food} </li>;
+          return (
+            <li className="flex flex-row gap-2">
+              <Avatar src={ingredient.image} alt={ingredient.food} />{' '}
+              {`${ingredient.food} ${ingredient.quantity} ${ingredient.measure}`}
+            </li>
+          );
         })}
       </ul>
       <a href={recipe.url}> Voir la Recette détaillée </a>
