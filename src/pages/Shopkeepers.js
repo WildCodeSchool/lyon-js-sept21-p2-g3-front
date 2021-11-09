@@ -24,7 +24,7 @@ function LocationMarker() {
 
   return position === null ? null : (
     <Marker position={position}>
-      <Popup>Vous êtes ici !</Popup>
+      {/* <Popup>Vous êtes ici !</Popup> */}
       <Circle center={position} radius={10000} />
     </Marker>
   );
@@ -49,7 +49,6 @@ const imageProduction = {
   '01.19.10.11': '/media/légumes.jpeg',
   '10.71.12': '/media/viennoiseries.jpeg',
   "GP.Produits.d'épicerie": '/media/viennoiseries.jpeg',
-  '': '/media/viennoiseries.jpeg',
 };
 function Shopkeepers() {
   const [dataShopkeepers, setDataShopkeepers] = useState([]);
@@ -61,8 +60,8 @@ function Shopkeepers() {
       )
       .then((response) => response.data)
       .then((data) => {
-        console.log('data : ', data);
-        console.log('data.items :', data.items);
+        // console.log('data : ', data);
+        // console.log('data.items :', data.items);
         setDataShopkeepers(data.items);
       });
   };
@@ -118,7 +117,7 @@ function Shopkeepers() {
                       src={
                         imageProduction[
                           item.productions[0] && item.productions[0].code
-                        ]
+                        ] || '/media/viennoiseries.jpeg'
                       }
                       alt=""
                     />
