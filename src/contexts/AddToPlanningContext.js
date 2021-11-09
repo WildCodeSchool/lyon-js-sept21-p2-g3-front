@@ -15,8 +15,6 @@ export const AddToPlanningContextProvider = ({ children }) => {
       });
   };
 
-  console.log(listPlanning);
-
   return (
     <AddToPlanningContext.Provider
       value={{ listPlanning, getPlanning, setListPlanning }}
