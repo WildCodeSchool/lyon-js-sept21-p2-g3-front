@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext, useState } from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -6,9 +6,14 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Checkbox from '@mui/material/Checkbox';
 import Avatar from '@mui/material/Avatar';
+import { CircularProgress } from '@mui/material';
+import { uniqueId } from 'lodash';
+import AddToShoppingListContext from '../contexts/AddToShoppingListContext';
 
 export default function IngredientList() {
-  const [checked, setChecked] = React.useState([]);
+  const { shoppingList } = useContext(AddToShoppingListContext);
+  const [checked, setChecked] = useState([]);
+  // const { listPlanning } = React.useContext();
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
@@ -22,6 +27,10 @@ export default function IngredientList() {
     setChecked(newChecked);
   };
 
+  if (!shoppingList) {
+    return <CircularProgress />;
+  }
+
   return (
     <List
       sx={{
@@ -31,16 +40,18 @@ export default function IngredientList() {
         color: '#2E1F27',
       }}
     >
-      {[0, 1, 2, 3, 5, 6, 7, 8, 9, 10].map((value) => {
-        const labelId = `checkbox-list-secondary-label-${value}`;
+      {shoppingList.map((value) => {
         return (
           <ListItem
-            key={value}
+            key={uniqueId()}
+            onClick={(e) => {
+              e.preventDefault();
+              handleToggle(value);
+            }}
             secondaryAction={
               <Checkbox
                 onChange={handleToggle(value)}
                 checked={checked.indexOf(value) !== -1}
-                inputProps={{ 'aria-labelledby': labelId }}
                 sx={{
                   color: '#2E1F27',
                   '&.Mui-checked': {
@@ -54,12 +65,17 @@ export default function IngredientList() {
             <ListItemButton>
               <ListItemAvatar>
                 <Avatar
-                  alt={`Avatar n°${value + 1}`}
-                  src={`/static/images/avatar/${value + 1}.jpg`}
+                  alt={`Avatar n°${value.food}`}
+                  src={`${value.image}`}
                   sx={{ border: '#2E1F27' }}
                 />
               </ListItemAvatar>
-              <ListItemText id={labelId} primary={`item ${value + 1}`} />
+              <ListItemText
+                id={value.foodId}
+                primary={`${value.food}  (${Math.round(value.quantity)} ${
+                  value.measure
+                })`}
+              />
             </ListItemButton>
           </ListItem>
         );
