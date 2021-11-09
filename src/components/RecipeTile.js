@@ -23,7 +23,7 @@ const RecipeTile = ({ recipeId, imgSrc, imgAlt, date, lunch, diner }) => {
           id="RecipeContainer"
           className=" relative w-80 m-auto rounded-2xl pt-7"
         >
-          <Link to="/recipe:id">
+          <Link to={`/recipe/${id}`}>
             {date ? (
               <div className=" absolute z-10 date flex flex-row justify-center bg-background rounded-t-2xl h-16 w-80 items-center -mb-20 ">
                 <h1 className="text-primary font-bold text-2xl pl-3">
@@ -83,7 +83,7 @@ const RecipeTile = ({ recipeId, imgSrc, imgAlt, date, lunch, diner }) => {
               </div>{' '}
             </Link>
             <div className="flex items-center justify-center h-20 bg-recipeWhite rounded-b-2xl text-primary font-bold">
-              <Link to={`/recipe/${recipeId}`}>
+              <Link to={`/recipe/${id}`}>
                 <h3 id="RecipeTitle"> {imgAlt} </h3>
               </Link>
             </div>
