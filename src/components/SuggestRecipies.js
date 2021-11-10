@@ -59,7 +59,10 @@ const SuggestRecipies = () => {
   }
 
   return (
-    <div>
+    <div
+      id="SuggestRecipies"
+      className="flex flex-col justify-center items-center"
+    >
       {recipeRandom.map((recipe) => {
         return (
           <RecipeTile

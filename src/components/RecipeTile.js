@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddBoxIcon from '@mui/icons-material/AddBox';
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import Brightness2Icon from '@mui/icons-material/Brightness2';
 import FavoritesContext from '../contexts/FavoritesContexts';
 import MyFoodAPI from '../MyFoodAPI';
 
-const RecipeTile = ({ recipeId, imgSrc, imgAlt }) => {
+const RecipeTile = ({ recipeId, imgSrc, imgAlt, date, lunch, diner }) => {
   const id = recipeId.split('#')[1];
-  const { favoritesId, getFavoritesId } = useContext(FavoritesContext);
+  const { favoritesId, setFavoritesId } = useContext(FavoritesContext);
   const [isFavorite, setIsFavorite] = useState(favoritesId.includes(id));
 
   return (
@@ -17,8 +19,33 @@ const RecipeTile = ({ recipeId, imgSrc, imgAlt }) => {
         id="RecipeTile"
         className="flex justify-center w-min rounded-3xl shadow-xl"
       >
-        <div id="RecipeContainer" className=" w-80 m-auto rounded-2xl pt-7">
+        <div
+          id="RecipeContainer"
+          className=" relative w-80 m-auto rounded-2xl pt-7"
+        >
           <Link to="/recipe:id">
+            {date ? (
+              <div className=" absolute z-10 date flex flex-row justify-center bg-background rounded-t-2xl h-16 w-80 items-center -mb-20 ">
+                <h1 className="text-primary font-bold text-2xl pl-3">
+                  {' '}
+                  {date}
+                </h1>
+
+                {lunch && (
+                  <span className="text-third text-3xl pl-7">
+                    <WbSunnyIcon sx={{ fontSize: 40 }} />
+                  </span>
+                )}
+
+                {diner && (
+                  <span className="text-third text-3xl pl-7">
+                    <Brightness2Icon sx={{ fontSize: 40 }} />
+                  </span>
+                )}
+              </div>
+            ) : (
+              ' '
+            )}
             <img
               src={imgSrc}
               alt={imgAlt}
@@ -32,7 +59,14 @@ const RecipeTile = ({ recipeId, imgSrc, imgAlt }) => {
                 setIsFavorite(!isFavorite);
                 MyFoodAPI.post(`/favorites/${id}`, {
                   isfavorite: isFavorite,
-                }).then(getFavoritesId());
+                }).then(() => {
+                  if (!isFavorite) {
+                    setFavoritesId([...favoritesId, id]);
+                  } else {
+                    const newFavoritesId = favoritesId.filter((i) => i !== id);
+                    setFavoritesId(newFavoritesId);
+                  }
+                });
               }}
             >
               {' '}
@@ -42,11 +76,11 @@ const RecipeTile = ({ recipeId, imgSrc, imgAlt }) => {
                 <FavoriteBorderIcon sx={{ fontSize: 45, color: '#DD7230' }} />
               )}{' '}
             </div>{' '}
-            <Link to="/addtoplanning">
-              <span className="flex items-center justify-center bg-recipeWhite absolute z-20 right-5 -top-8 w-16 h-16 rounded-full">
+            <Link to={`/addtoplanning/${id}`}>
+              <div className="flex items-center justify-center bg-recipeWhite absolute z-20 right-5 -top-8 w-16 h-16 rounded-full">
                 {' '}
                 <AddBoxIcon sx={{ fontSize: 45, color: '#DD7230' }} />{' '}
-              </span>{' '}
+              </div>{' '}
             </Link>
             <div className="flex items-center justify-center h-20 bg-recipeWhite rounded-b-2xl text-primary font-bold">
               <Link to={`/recipe/${recipeId}`}>
