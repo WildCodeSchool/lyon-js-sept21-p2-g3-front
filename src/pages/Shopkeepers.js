@@ -10,6 +10,8 @@ import {
   Circle,
 } from 'react-leaflet';
 
+const redOptions = { color: 'red' };
+
 function LocationMarker() {
   const [position, setPosition] = useState(null);
   const map = useMapEvents({
@@ -23,9 +25,9 @@ function LocationMarker() {
   });
 
   return position === null ? null : (
-    <Marker position={position}>
+    <Marker position={position} markerColor={redOptions}>
       {/* <Popup>Vous êtes ici !</Popup> */}
-      <Circle center={position} radius={10000} />
+      <Circle center={position} radius={10000} pathOptions={redOptions} />
     </Marker>
   );
 }
