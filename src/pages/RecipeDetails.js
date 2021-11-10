@@ -16,6 +16,9 @@ const RecipeDetails = () => {
   const { favoritesId, setFavoritesId } = useContext(FavoritesContext);
   const [isFavorite, setIsFavorite] = useState(favoritesId.includes(id));
 
+  const location = useLocation();
+  const url = `${process.env.REACT_APP_URL}${location.pathname}`;
+
   const getRecipe = () => {
     axios
       .get(
@@ -72,8 +75,6 @@ const RecipeDetails = () => {
           <div
             className="flex items-center justify-center bg-recipeWhite z-20 right-5 -top-8 w-16 h-16 rounded-full"
             onClick={() => {
-              const location = useLocation();
-              const url = location.pathname;
               navigator.clipboard.writeText(url);
             }}
           >
