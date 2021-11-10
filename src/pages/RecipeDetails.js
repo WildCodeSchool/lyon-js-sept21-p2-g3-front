@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { Avatar, Button, CircularProgress } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -38,7 +38,7 @@ const RecipeDetails = () => {
       <div id="page" className="flex flex-col gap-2 items-center pb-24">
         <div
           id="share-like-addToPlanning"
-          className="flex flex-col fixed top-1/2 right-2"
+          className="flex flex-col gap-2 fixed top-1/4 right-2 opacity-100 z-50"
         >
           <div
             className="flex items-center justify-center bg-recipeWhite z-20 left-5 -top-8 w-16 h-16 rounded-full"
@@ -69,11 +69,22 @@ const RecipeDetails = () => {
               <AddBoxIcon sx={{ fontSize: 45, color: '#DD7230' }} />{' '}
             </div>{' '}
           </Link>
-          <div>
-            <ShareIcon />
+          <div
+            className="flex items-center justify-center bg-recipeWhite z-20 right-5 -top-8 w-16 h-16 rounded-full"
+            onClick={() => {
+              const location = useLocation();
+              const url = location.pathname;
+              navigator.clipboard.writeText(url);
+            }}
+          >
+            <ShareIcon sx={{ fontSize: 45, color: '#DD7230' }} />
           </div>
         </div>
-        <img className="w-screen" src={recipe.image} alt={recipe.label} />
+        <img
+          className="w-screen opacity-80"
+          src={recipe.image}
+          alt={recipe.label}
+        />
         <h2> {recipe.label} </h2>
         <ul className="grid grid-cols-2 w-screen gap-2 ml-4 mt-4 pb-6">
           {recipe.ingredients.map((ingredient) => {
