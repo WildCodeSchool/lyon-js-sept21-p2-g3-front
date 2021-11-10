@@ -73,13 +73,21 @@ const RecipeDetails = () => {
             </div>{' '}
           </Link>
           <div
-            className="flex items-center justify-center bg-recipeWhite z-20 right-5 -top-8 w-16 h-16 rounded-full"
+            className="flex items-center justify-center bg-recipeWhite z-20 right-5 -top-8 w-16 h-16 rounded-full shareIconDiv"
             onClick={() => {
               navigator.clipboard.writeText(url);
+              const infoBulle = document.querySelector('.infoBulleNotCopied');
+              infoBulle.classList.remove('infoBulleNotCopied');
+              infoBulle.classList.add('infoBulleCopied');
+              setTimeout(() => {
+                infoBulle.classList.remove('infoBulleNotCopied');
+                infoBulle.classList.add('infoBulleCopied');
+              }, 100);
             }}
           >
             <ShareIcon sx={{ fontSize: 45, color: '#DD7230' }} />
           </div>
+          <div className="infoBulleNotCopied"> Lien copié ! </div>
         </div>
         <img
           className="w-screen opacity-80"
