@@ -19,6 +19,7 @@ function App() {
   // construction of the arrays with the wanted informations from the api for the app
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState('');
+
   const getRecipe = () => {
     axios
 
@@ -43,6 +44,7 @@ function App() {
     getRecipe();
   }, [search]);
 
+  // Animation Footer //
   const mainRef = useRef();
 
   const searchBoxHeight = 70;
@@ -84,7 +86,7 @@ function App() {
               <Switch>
                 <Route exact path="/">
                   {' '}
-                  <Home recipes={recipes} />
+                  <Home recipes={recipes} search={search} />
                 </Route>
                 <Route exact path="/recipe/:id" component={RecipeDetails} />
                 <Route path="/favorites" component={Favorites} />
