@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 
 function NavBar({ setSearch }) {
   const [newSearch, setNewSearch] = useState('');
+
+  const history = useHistory();
 
   return (
     <>
@@ -24,14 +26,15 @@ function NavBar({ setSearch }) {
           onSubmit={(e) => {
             e.preventDefault();
             setSearch(newSearch);
+            history.push('/');
           }}
         >
           <label htmlFor="searchBar">
             <input
-              className="rounded-lg border border-black border-solid opacity-30 shadow-xl mx-3 w-30 h-9"
+              className="rounded-lg border border-black border-solid opacity-30 shadow-xl mx-3 w-30 h-9 pl-4"
               id="searchBar"
               type="text"
-              placeholder="   Search"
+              placeholder="Search"
               onChange={(e) => setNewSearch(e.target.value)}
             />
             <span className="pr-4 -ml-12">
