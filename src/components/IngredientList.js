@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext, useState } from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -6,9 +6,14 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Checkbox from '@mui/material/Checkbox';
 import Avatar from '@mui/material/Avatar';
+import { CircularProgress, Button } from '@mui/material';
+import AddToShoppingListContext from '../contexts/AddToShoppingListContext';
 
 export default function IngredientList() {
-  const [checked, setChecked] = React.useState([]);
+  const { shoppingList } = useContext(AddToShoppingListContext);
+  // const { shoppingList, setShoppingList } = useContext(AddToShoppingListContext);
+  const [checked, setChecked] = useState([]);
+  // const { listPlanning } = React.useContext();
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
@@ -22,48 +27,71 @@ export default function IngredientList() {
     setChecked(newChecked);
   };
 
+  if (!shoppingList) {
+    return <CircularProgress />;
+  }
+
   return (
-    <List
-      sx={{
-        width: '100%',
-        maxWidth: 600,
-        margin: 'auto',
-        color: '#2E1F27',
-      }}
-    >
-      {[0, 1, 2, 3, 5, 6, 7, 8, 9, 10].map((value) => {
-        const labelId = `checkbox-list-secondary-label-${value}`;
-        return (
-          <ListItem
-            key={value}
-            secondaryAction={
-              <Checkbox
-                onChange={handleToggle(value)}
-                checked={checked.indexOf(value) !== -1}
-                inputProps={{ 'aria-labelledby': labelId }}
-                sx={{
-                  color: '#2E1F27',
-                  '&.Mui-checked': {
-                    color: '#DD7230',
-                  },
-                }}
-              />
-            }
-            disablePadding
-          >
-            <ListItemButton>
-              <ListItemAvatar>
-                <Avatar
-                  alt={`Avatar n°${value + 1}`}
-                  src={`/static/images/avatar/${value + 1}.jpg`}
-                  sx={{ border: '#2E1F27' }}
+    <>
+      <List
+        sx={{
+          width: '100%',
+          maxWidth: 600,
+          margin: 'auto',
+          color: '#2E1F27',
+          paddingBottom: 7,
+        }}
+      >
+        {shoppingList.map((value) => {
+          return (
+            <ListItem
+              key={value.foodId}
+              onClick={handleToggle(value)}
+              checked={checked.indexOf(value) !== -1}
+              secondaryAction={
+                <Checkbox
+                  onChange={handleToggle(value)}
+                  checked={checked.indexOf(value) !== -1}
+                  sx={{
+                    color: '#2E1F27',
+                    '&.Mui-checked': {
+                      color: '#DD7230',
+                    },
+                  }}
                 />
-              </ListItemAvatar>
-              <ListItemText id={labelId} primary={`item ${value + 1}`} />
-            </ListItemButton>
-          </ListItem>
-        );
-      })}
-    </List>
+              }
+              disablePadding
+            >
+              <ListItemButton>
+                <ListItemAvatar>
+                  <Avatar
+                    alt={`${value.food}`}
+                    src={`${value.image}`}
+                    sx={{ border: '#2E1F27' }}
+                  />
+                </ListItemAvatar>
+                <ListItemText
+                  id={value.foodId}
+                  primary={`${value.food}  (${Math.round(value.quantity)} ${
+                    value.measure
+                  })`}
+                />
+              </ListItemButton>
+            </ListItem>
+          );
+        })}
+        <Button
+          onClick={() => handleToggle([...checked].shift())}
+          type="submit"
+          variant="contained"
+          sx={{
+            marginTop: 2,
+            padding: 2,
+          }}
+        >
+          DELETE ITEMS
+        </Button>
+      </List>
+    </>
   );
 }
