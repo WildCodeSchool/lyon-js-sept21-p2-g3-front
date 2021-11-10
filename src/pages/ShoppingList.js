@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { CircularProgress } from '@mui/material';
+import { CircularProgress, Button } from '@mui/material';
 import IngredientList from '../components/IngredientList';
 import AddToShoppingListContext from '../contexts/AddToShoppingListContext';
 
@@ -23,6 +23,9 @@ function ShoppingList() {
           My shopping list
         </h1>
         <IngredientList />
+        <Button type="submit" variant="contained">
+          DELETE ITEMS
+        </Button>
       </div>
     </>
   );
