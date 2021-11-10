@@ -1,4 +1,3 @@
-// import React from 'react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { CircularProgress } from '@mui/material';
@@ -37,17 +36,9 @@ const SuggestRecipies = () => {
 
       // Extract the DATA from the received response
 
-      .then(
-        (response) => {
-          setRecipeRandom(response.data.hits);
-        }
-
-        // Use this data to update the state
-
-        // setRecipeRandom(data.hits[0].setRecipeRandom);
-
-        // data.hits contains all of the different recipes existing according to the input of the user
-      );
+      .then((response) => {
+        setRecipeRandom(response.data.hits);
+      });
   };
 
   useEffect(() => {
