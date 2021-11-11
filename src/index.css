@@ -37,3 +37,16 @@ code {
   width: 100%;
   z-index: 100;
 }
+
+#share-like-addToPlanning {
+  /* opacity: 80%; */
+}
+
+.infoBulleNotCopied {
+  transform: scale(0);
+  background-color: white;
+}
+
+.infoBulleCopied {
+  transform: scale(1);
+}
