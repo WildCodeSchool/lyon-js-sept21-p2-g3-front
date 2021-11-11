@@ -1,8 +1,57 @@
 import axios from 'axios';
-// import { map } from 'leaflet';
+// import { Map } from 'leaflet';
 import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  useMapEvents,
+  Circle,
+} from 'react-leaflet';
 
+const redOptions = { color: 'red' };
+
+function LocationMarker() {
+  const [position, setPosition] = useState(null);
+  const map = useMapEvents({
+    click() {
+      map.locate();
+    },
+    locationfound(e) {
+      setPosition(e.latlng);
+      map.flyTo(e.latlng, map.getZoom());
+    },
+  });
+
+  return position === null ? null : (
+    <Marker position={position} markerColor={redOptions}>
+      {/* <Popup>Vous êtes ici !</Popup> */}
+      <Circle center={position} radius={10000} pathOptions={redOptions} />
+    </Marker>
+  );
+}
+const imageProduction = {
+  10.71: '/media/boulangerie.jpeg',
+  '10.71.1': '/media/boulangerie2.jpeg',
+  '10.71.11': '/media/boulangerie3.jpeg',
+  '46.34.12': '/media/blanc-rouge-vin.jpeg',
+  '10.72.12': '/media/viennoiseries.jpeg',
+  46.37: '/media/i101986-cafe-nu.jpeg',
+  47: '/media/viande.jpeg',
+  '11.07.19': '/media/vin2.jpeg',
+  '01.47.12': '/media/oeufs.jpeg',
+  '47.00.12': '/media/légumes.jpeg',
+  '47.00.13': '/media/viande.jpeg',
+  '10.82.2': '/media/chocolat.jpeg',
+  '10.19.10.11': '/media/légumes.jpeg',
+  '46.21.11': '/media/légumes.jpeg',
+  '47.00.11': '/media/légumes.jpeg',
+  '01.27.12': '/media/i101986-cafe-nu.jpeg',
+  '01.19.10.11': '/media/légumes.jpeg',
+  '10.71.12': '/media/viennoiseries.jpeg',
+  "GP.Produits.d'épicerie": '/media/viennoiseries.jpeg',
+};
 function Shopkeepers() {
   const [dataShopkeepers, setDataShopkeepers] = useState([]);
 
@@ -13,8 +62,8 @@ function Shopkeepers() {
       )
       .then((response) => response.data)
       .then((data) => {
-        console.log('data : ', data);
-        console.log('data.items :', data.items);
+        // console.log('data : ', data);
+        // console.log('data.items :', data.items);
         setDataShopkeepers(data.items);
       });
   };
@@ -30,10 +79,10 @@ function Shopkeepers() {
         </h1>
         <MapContainer
           className="h-80"
-          id="mapid"
+          id="map"
           center={[45.764043, 4.835659]}
           zoom={9.5}
-          scrollWheelZoom
+          scrollWheelZoom={false}
         >
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -56,6 +105,7 @@ function Shopkeepers() {
               </Marker>
             );
           })}
+          <LocationMarker />
         </MapContainer>
       </div>
       <section className=" bg-four container">
@@ -64,8 +114,16 @@ function Shopkeepers() {
             return (
               <div className="mx-0 mb-8 text-center">
                 <div className="p-0 overflow-hidden h-100 shadow-lg bg-background bg-opacity-60 rounded-md">
-                  {/* <img src={item.img} alt="" className="card-img-top w-full" /> */}
                   <div className="card-body">
+                    <img
+                      src={
+                        imageProduction[
+                          item.productions[0] && item.productions[0].code
+                        ] || '/media/viennoiseries.jpeg'
+                      }
+                      alt=""
+                    />
+
                     <h2 className="keeper-title">{item.raisonSociale}</h2>
                     {/* <p className="keeper-text">{item.categories}</p> */}
                     <p className="keeper-adress">

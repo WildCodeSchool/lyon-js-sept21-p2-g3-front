@@ -9,13 +9,17 @@ import ShoppingList from './pages/ShoppingList';
 import Planning from './pages/Planning';
 import Shopkeepers from './pages/Shopkeepers';
 import RecipeDetails from './pages/RecipeDetails';
+import AddToPlanning from './pages2/AddToPlanning';
 import { FavoritesContextProviders } from './contexts/FavoritesContexts';
+import { AddToPlanningContextProvider } from './contexts/AddToPlanningContext';
 import useScroll from './useScroll';
+import { AddToShoppingListContextProvider } from './contexts/AddToShoppingListContext';
 
 function App() {
   // construction of the arrays with the wanted informations from the api for the app
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState('');
+
   const getRecipe = () => {
     axios
 
@@ -40,6 +44,7 @@ function App() {
     getRecipe();
   }, [search]);
 
+  // Animation Footer //
   const mainRef = useRef();
 
   const searchBoxHeight = 70;
@@ -68,29 +73,34 @@ function App() {
   }, [scroll]);
 
   return (
-    <FavoritesContextProviders>
-      <div className="flex flex-col h-screen align-center overflow-hidden">
-        <NavBar setSearch={setSearch} />
+    <AddToPlanningContextProvider>
+      <AddToShoppingListContextProvider>
+        <FavoritesContextProviders>
+          <div className="flex flex-col h-screen align-center overflow-hidden">
+            <NavBar setSearch={setSearch} />
 
-        <div
-          id="main"
-          className="flex-grow overflow-y-scroll bg-third bg-opacity-30"
-        >
-          <Switch>
-            <Route exact path="/">
-              {' '}
-              <Home recipes={recipes} />
-            </Route>
-            <Route exact path="/recipe/:id" component={RecipeDetails} />
-            <Route path="/favorites" component={Favorites} />
-            <Route path="/shopping-list" component={ShoppingList} />
-            <Route path="/planning" component={Planning} />
-            <Route path="/shopkeepers" component={Shopkeepers} />
-          </Switch>
-        </div>
-        <Footer height={height} />
-      </div>
-    </FavoritesContextProviders>
+            <div
+              id="main"
+              className="flex-grow overflow-y-scroll bg-third bg-opacity-30"
+            >
+              <Switch>
+                <Route exact path="/">
+                  {' '}
+                  <Home recipes={recipes} search={search} />
+                </Route>
+                <Route exact path="/recipe/:id" component={RecipeDetails} />
+                <Route path="/favorites" component={Favorites} />
+                <Route path="/shopping-list" component={ShoppingList} />
+                <Route path="/planning" component={Planning} />
+                <Route path="/shopkeepers" component={Shopkeepers} />
+                <Route path="/addtoplanning/:id" component={AddToPlanning} />
+              </Switch>
+            </div>
+            <Footer height={height} />
+          </div>
+        </FavoritesContextProviders>
+      </AddToShoppingListContextProvider>
+    </AddToPlanningContextProvider>
   );
 }
 
