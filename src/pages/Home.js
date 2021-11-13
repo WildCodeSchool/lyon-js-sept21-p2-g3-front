@@ -17,7 +17,7 @@ function Home({ recipes, search }) {
     );
   }
   return (
-    <div id="Home" className="flex flex-col justify-center items-center">
+    <div id="Home" className="flex flex-col justify-center items-center pb-20">
       {recipes.map((info) => {
         return (
           <RecipeTile

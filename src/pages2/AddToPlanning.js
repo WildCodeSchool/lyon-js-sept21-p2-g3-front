@@ -34,7 +34,7 @@ const AddToPlanning = () => {
   console.log(recipe);
 
   if (!recipe) {
-    return <CircularProgress />;
+    return <CircularProgress sx={{}} />;
   }
 
   return (

@@ -73,7 +73,7 @@ function Shopkeepers() {
 
   return (
     <>
-      <div className="flex-auto text-xl font-semibold justify-items-center text-center">
+      <div className="flex-auto text-lg font-semibold justify-items-center text-center">
         <h1 className="p-2 border-b-4 border-l-4 border-r-4 border-background bg-background text-primary rounded-b-full mb-4">
           MY SHOOPKEEPERS
         </h1>
@@ -108,12 +108,12 @@ function Shopkeepers() {
           <LocationMarker />
         </MapContainer>
       </div>
-      <section className=" bg-four container">
+      <section className=" bg-four container pb-20 text-lg">
         <div className="m-8">
           {dataShopkeepers.map((item) => {
             return (
               <div className="-mx-4 mb-8 text-center">
-                <div className="overflow-hidden h-100 shadow-lg bg-background text-primary rounded-2xl ">
+                <div className="overflow-hidden h-100 box-shadow bg-background text-primary rounded-2xl ">
                   <div className="card-body">
                     <img
                       src={

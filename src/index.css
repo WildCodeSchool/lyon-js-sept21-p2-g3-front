@@ -52,7 +52,7 @@ code {
   transform: scale(1);
 }
 
-/* BACKGROUND */ 
+/* BACKGROUND */
 
 .bg-image {
   background-image: linear-gradient(
@@ -60,11 +60,9 @@ code {
       rgba(255, 255, 255, 0.35)
     ),
     url(./assets/Background-body.jpeg);
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    background-size:cover; 
 }
 
-/* SEARCH-BAR */ 
-
+/* SEARCH-BAR */

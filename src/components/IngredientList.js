@@ -84,7 +84,7 @@ export default function IngredientList() {
             color: '#FDB500',
             bgcolor: '#2E1F27',
             padding: 2,
-            marginTop: 4,
+            marginTop: 2,
             fontWeight: 'bold',
           }}
         >

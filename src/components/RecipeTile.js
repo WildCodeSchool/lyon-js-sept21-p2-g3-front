@@ -31,7 +31,7 @@ const RecipeTile = ({ recipeId, imgSrc, imgAlt, date, lunch, diner }) => {
           <Link to={`/recipe/${id}`}>
             {date ? (
               <div className=" absolute z-10 date flex flex-row justify-center bg-background rounded-t-2xl h-16 w-80 items-center -mt-8">
-                <h1 className="text-primary font-bold text-2xl pl-3">{date}</h1>
+                <h2 className="text-primary font-bold text-2xl pl-3">{date}</h2>
 
                 {lunch && (
                   <span className="text-third text-3xl pl-7">
@@ -86,7 +86,9 @@ const RecipeTile = ({ recipeId, imgSrc, imgAlt, date, lunch, diner }) => {
             </Link>
             <div className="flex items-center justify-center h-20 bg-recipeWhite rounded-b-2xl text-primary font-bold">
               <Link to={`/recipe/${id}`}>
-                <h3 id="RecipeTitle">{truncate(imgAlt)}</h3>
+                <h3 id="RecipeTitle" className="mt-2 text-lg ">
+                  {truncate(imgAlt)}
+                </h3>
               </Link>
             </div>
           </div>
