@@ -39,14 +39,9 @@ const AddToPlanning = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center pb-24 ">
-        <RecipeTile
-          recipeId={recipe.uri}
-          imgAlt={recipe.label}
-          imgSrc={recipe.image}
-        />
+      <div className="flex flex-col items-center pb-24">
         <form
-          className="flex flex-col items-center mt-10"
+          className="flex flex-col items-center mt-5"
           onSubmit={(e) => {
             e.preventDefault();
             console.log(id, date, lunch, diner);
@@ -64,7 +59,22 @@ const AddToPlanning = () => {
             );
           }}
         >
-          <InputLabel htmlFor="my-input">When ? </InputLabel>
+          <InputLabel
+            htmlFor="my-input"
+            sx={{
+              color: '#2E1F27',
+              fontSize: 25,
+              fontWeight: 'bold',
+              textAlign: 'center',
+            }}
+          >
+            When do you want to eat ... ?
+          </InputLabel>
+          <RecipeTile
+            recipeId={recipe.uri}
+            imgAlt={recipe.label}
+            imgSrc={recipe.image}
+          />
           <Input
             id="my-input"
             type="date"
@@ -72,6 +82,13 @@ const AddToPlanning = () => {
               setDate(e.target.value);
             }}
             required
+            sx={{
+              paddingX: 5,
+              color: '#2E1F27',
+              fontSize: 20,
+              fontWeight: 'bold',
+              borderBottom: '#2E1F27',
+            }}
           />
           <FormControlLabel
             control={
@@ -80,6 +97,12 @@ const AddToPlanning = () => {
                   setLunch(!lunch);
                 }}
                 defaultChecked
+                sx={{
+                  color: '#2E1F27',
+                  '&.Mui-checked': {
+                    color: '#DD7230',
+                  },
+                }}
               />
             }
             label="Lunch"
@@ -90,11 +113,21 @@ const AddToPlanning = () => {
                 onClick={() => {
                   setDiner(!diner);
                 }}
+                sx={{
+                  color: '#2E1F27',
+                  '&.Mui-checked': {
+                    color: '#DD7230',
+                  },
+                }}
               />
             }
             label="Diner"
           />
-          <Button type="submit" variant="contained">
+          <Button
+            type="submit"
+            variant="contained"
+            sx={{ color: '#FDB500', bgcolor: '#2E1F27', padding: 2 }}
+          >
             Add to planning
           </Button>
         </form>
