@@ -19,7 +19,7 @@ function ShoppingList() {
   return (
     <>
       <div className="flex-auto text-xl font-semibold justify-items-center text-center pb-10">
-        <h1 className="p-2 border-b-4 border-l-4 border-r-4 border-background bg-background text-primary rounded-b-full mb-4">
+        <h1 className="p-2 border-b-4 border-l-4 border-r-4 border-background bg-background text-primary rounded-b-full mb-4 sticky">
           MY SHOPPING LIST
         </h1>
         <IngredientList />

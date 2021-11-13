@@ -46,7 +46,7 @@ const RecipeTile = ({ recipeId, imgSrc, imgAlt, date, lunch, diner }) => {
             <img
               src={imgSrc}
               alt={imgAlt}
-              className="rounded-t-2xl w-80 opacity-80 -mt-7"
+              className="rounded-t-2xl w-80 -mt-7"
             />
           </Link>
           <div id="RecipeTitleContainer" className="relative">

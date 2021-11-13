@@ -87,7 +87,6 @@ const AddToPlanning = () => {
               color: '#2E1F27',
               fontSize: 20,
               fontWeight: 'bold',
-              borderBottom: '#2E1F27',
             }}
           />
           <FormControlLabel
@@ -100,7 +99,7 @@ const AddToPlanning = () => {
                 sx={{
                   color: '#2E1F27',
                   '&.Mui-checked': {
-                    color: '#DD7230',
+                    color: '#FDB500',
                   },
                 }}
               />
@@ -116,7 +115,7 @@ const AddToPlanning = () => {
                 sx={{
                   color: '#2E1F27',
                   '&.Mui-checked': {
-                    color: '#DD7230',
+                    color: '#FDB500',
                   },
                 }}
               />
@@ -125,7 +124,7 @@ const AddToPlanning = () => {
           />
           <Button
             type="submit"
-            variant="contained"
+            variant="raised"
             sx={{ color: '#FDB500', bgcolor: '#2E1F27', padding: 2 }}
           >
             Add to planning

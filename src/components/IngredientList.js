@@ -55,7 +55,7 @@ export default function IngredientList() {
                   sx={{
                     color: '#2E1F27',
                     '&.Mui-checked': {
-                      color: '#DD7230',
+                      color: '#FDB500',
                     },
                   }}
                 />
@@ -64,11 +64,7 @@ export default function IngredientList() {
             >
               <ListItemButton>
                 <ListItemAvatar>
-                  <Avatar
-                    alt={`${value.food}`}
-                    src={`${value.image}`}
-                    sx={{ border: '#2E1F27' }}
-                  />
+                  <Avatar alt={`${value.food}`} src={`${value.image}`} />
                 </ListItemAvatar>
                 <ListItemText
                   id={value.foodId}
@@ -83,10 +79,13 @@ export default function IngredientList() {
         <Button
           onClick={() => handleToggle([...checked].shift())}
           type="submit"
-          variant="contained"
+          variant="raised"
           sx={{
-            marginTop: 2,
+            color: '#FDB500',
+            bgcolor: '#2E1F27',
             padding: 2,
+            marginTop: 4,
+            fontWeight: 'bold',
           }}
         >
           DELETE ITEMS
