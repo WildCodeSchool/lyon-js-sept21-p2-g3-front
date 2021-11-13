@@ -52,10 +52,19 @@ code {
   transform: scale(1);
 }
 
+/* BACKGROUND */ 
+
 .bg-image {
-  background-image: linear-gradient(rgba(255, 255, 255, 0.350), rgba(255, 255, 255, 0.350)), url(./assets/Background-body.jpeg);
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.35),
+      rgba(255, 255, 255, 0.35)
+    ),
+    url(./assets/Background-body.jpeg);
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
+
+/* SEARCH-BAR */ 
+

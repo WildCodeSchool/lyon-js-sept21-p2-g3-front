@@ -13,6 +13,11 @@ const RecipeTile = ({ recipeId, imgSrc, imgAlt, date, lunch, diner }) => {
   const { favoritesId, setFavoritesId } = useContext(FavoritesContext);
   const [isFavorite, setIsFavorite] = useState(favoritesId.includes(id));
 
+  const truncate = (str) => {
+    const none = ' . . .';
+    return str.length > 25 ? str.substring(0, 20) + none : str;
+  };
+
   return (
     <div>
       <div
@@ -81,7 +86,7 @@ const RecipeTile = ({ recipeId, imgSrc, imgAlt, date, lunch, diner }) => {
             </Link>
             <div className="flex items-center justify-center h-20 bg-recipeWhite rounded-b-2xl text-primary font-bold">
               <Link to={`/recipe/${id}`}>
-                <h3 id="RecipeTitle"> {imgAlt} </h3>
+                <h3 id="RecipeTitle">{truncate(imgAlt)}</h3>
               </Link>
             </div>
           </div>
