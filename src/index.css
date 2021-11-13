@@ -60,9 +60,9 @@ code {
       rgba(255, 255, 255, 0.35)
     ),
     url(./assets/Background-body.jpeg);
-    background-repeat:no-repeat;
-    background-attachment:fixed;
-    background-size:cover; 
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 /* SEARCH-BAR */

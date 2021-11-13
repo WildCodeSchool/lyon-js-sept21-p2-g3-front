@@ -67,6 +67,12 @@ export default function IngredientList() {
                   <Avatar alt={`${value.food}`} src={`${value.image}`} />
                 </ListItemAvatar>
                 <ListItemText
+                  sx={{
+                    '& .MuiTypography-root': {
+                      fontWeight: 'bold',
+                      fontSize: 17,
+                    },
+                  }}
                   id={value.foodId}
                   primary={`${value.food}  (${Math.round(value.quantity)} ${
                     value.measure
@@ -77,7 +83,7 @@ export default function IngredientList() {
           );
         })}
         <Button
-          onClick={() => handleToggle([...checked].shift())}
+          onClick={setChecked}
           type="submit"
           variant="raised"
           sx={{
