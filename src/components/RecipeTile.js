@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddBoxIcon from '@mui/icons-material/AddBox';
@@ -31,16 +32,18 @@ const RecipeTile = ({ recipeId, imgSrc, imgAlt, date, lunch, diner }) => {
           <Link to={`/recipe/${id}`}>
             {date ? (
               <div className=" absolute z-10 date flex flex-row justify-center bg-background rounded-t-2xl h-16 w-80 items-center -mt-8">
-                <h2 className="text-primary font-bold text-2xl pl-3">{date}</h2>
+                <h2 className="text-primary font-bold text-xl pl-2">
+                  {moment(date).format('dddd MMMM Do')}
+                </h2>
 
                 {lunch && (
-                  <span className="text-third text-3xl pl-7">
+                  <span className="text-third text-3xl pl-4">
                     <WbSunnyIcon sx={{ fontSize: 40 }} />
                   </span>
                 )}
 
                 {diner && (
-                  <span className="text-third text-3xl pl-7">
+                  <span className="text-third text-3xl pl-4 pr-4">
                     <Brightness2Icon sx={{ fontSize: 40 }} />
                   </span>
                 )}
