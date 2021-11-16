@@ -22,9 +22,9 @@ const Planning = () => {
           return (
             <RecipeTile
               key={uniqid()}
-              recipeId={recipe.id}
-              imgAlt={recipe.title}
-              imgSrc={recipe.img}
+              recipeId={recipe.id_recipe}
+              imgAlt={recipe.label}
+              imgSrc={recipe.image}
               date={recipe.date}
               lunch={recipe.lunch}
               diner={recipe.diner}

@@ -50,18 +50,15 @@ const AddToPlanning = () => {
           onSubmit={(e) => {
             e.preventDefault();
             console.log(id, date, lunch, diner);
-            axios.post(
-              `${process.env.REACT_APP_URL_API_SERVER}/addtoplanning/`,
-              {
-                id: `.#${id}`,
-                date,
-                lunch,
-                diner,
-                image: recipe.image,
-                title: recipe.label,
-                ingredients: recipe.ingredients,
-              }
-            );
+            axios.post(`${process.env.REACT_APP_URL_API_SERVER}/planning`, {
+              id: `.#${id}`,
+              date,
+              lunch,
+              diner,
+              image: recipe.image,
+              label: recipe.label,
+              ingredients: recipe.ingredients,
+            });
           }}
         >
           <InputLabel htmlFor="my-input">When ? </InputLabel>
