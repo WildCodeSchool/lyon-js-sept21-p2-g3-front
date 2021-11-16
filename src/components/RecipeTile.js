@@ -57,16 +57,34 @@ const RecipeTile = ({ recipeId, imgSrc, imgAlt, date, lunch, diner }) => {
               className="flex items-center justify-center bg-recipeWhite absolute z-20 left-5 -top-8 w-16 h-16 rounded-full"
               onClick={() => {
                 setIsFavorite(!isFavorite);
-                MyFoodAPI.post(`/favorites/${id}`, {
-                  isfavorite: isFavorite,
-                }).then(() => {
-                  if (!isFavorite) {
+                if (!isFavorite) {
+                  MyFoodAPI.post(`/favorites/${id}`, {
+                    image: imgSrc,
+                    label: imgAlt,
+                  }).then(() => {
                     setFavoritesId([...favoritesId, id]);
-                  } else {
+                    console.log('favoritesId : ', favoritesId);
+                  });
+                } else {
+                  MyFoodAPI.delete(`/favorites/${id}`).then(() => {
                     const newFavoritesId = favoritesId.filter((i) => i !== id);
                     setFavoritesId(newFavoritesId);
-                  }
-                });
+                  });
+                }
+                // MyFoodAPI.post(`/favorites/${id}`, {
+                //   isfavorite: isFavorite,
+                //   image: imgSrc,
+                //   label: imgAlt,
+                // }).then(() => {
+                //   console.log('isFavorite', isFavorite);
+                //   if (isFavorite) {
+                //     setFavoritesId([...favoritesId, id]);
+                //   } else {
+                //     const newFavoritesId = favoritesId.filter((i) => i !== id);
+                //     setFavoritesId(newFavoritesId);
+                //   }
+                //   console.log('favoritesId : ', favoritesId);
+                // });
               }}
             >
               {' '}
