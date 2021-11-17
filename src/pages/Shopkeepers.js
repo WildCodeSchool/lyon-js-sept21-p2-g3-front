@@ -31,6 +31,7 @@ function LocationMarker() {
     </Marker>
   );
 }
+
 const imageProduction = {
   10.71: '/media/boulangerie.jpeg',
   '10.71.1': '/media/boulangerie2.jpeg',
@@ -79,7 +80,7 @@ function Shopkeepers() {
         </h1>
         <MapContainer
           className="h-80"
-          id="map"
+          id="mapid"
           center={[45.764043, 4.835659]}
           zoom={9.5}
           scrollWheelZoom={false}
@@ -97,7 +98,7 @@ function Shopkeepers() {
                   item.adressesOperateurs[0].long,
                 ]}
               >
-                <Popup>
+                <Popup className="h-20">
                   {item.raisonSociale}
                   {item.adressesOperateurs[0].lieu}
                   {item.adressesOperateurs[0].ville}
