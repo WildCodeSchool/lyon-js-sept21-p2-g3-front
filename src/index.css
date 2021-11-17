@@ -66,3 +66,19 @@ code {
 }
 
 /* SEARCH-BAR */
+
+/* POP UP */
+
+.leaflet-popup-content-wrapper {
+  background-color: #2e1f27;
+  box-shadow: 10px 5px 5px gray;
+  opacity: 0.7;
+  color: #fdb500;
+  text-align: center;
+  width: 200px;
+}
+
+.leaflet-marker-icon.leaflet-interactive {
+  filter: invert(100%);
+  -webkit-filter: invert(100%);
+}
