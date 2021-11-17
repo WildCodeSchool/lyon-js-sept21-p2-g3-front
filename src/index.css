@@ -77,3 +77,8 @@ code {
   text-align: center;
   width: 200px;
 }
+
+.leaflet-marker-icon.leaflet-interactive {
+  filter: invert(100%);
+  -webkit-filter: invert(100%);
+}
