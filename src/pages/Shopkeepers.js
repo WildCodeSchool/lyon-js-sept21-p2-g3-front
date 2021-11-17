@@ -14,6 +14,7 @@ const redOptions = { color: 'red' };
 
 function LocationMarker() {
   const [position, setPosition] = useState(null);
+
   const map = useMapEvents({
     click() {
       map.locate();
@@ -78,7 +79,7 @@ function Shopkeepers() {
           MY SHOOPKEEPERS
         </h1>
         <MapContainer
-          className="h-80"
+          className="h-80 "
           id="map"
           center={[45.764043, 4.835659]}
           zoom={9.5}
@@ -91,18 +92,20 @@ function Shopkeepers() {
 
           {dataShopkeepers.map((item) => {
             return (
-              <Marker
-                position={[
-                  item.adressesOperateurs[0].lat,
-                  item.adressesOperateurs[0].long,
-                ]}
-              >
-                <Popup>
-                  {item.raisonSociale}
-                  {item.adressesOperateurs[0].lieu}
-                  {item.adressesOperateurs[0].ville}
-                </Popup>
-              </Marker>
+              <>
+                <Marker
+                  position={[
+                    item.adressesOperateurs[0].lat,
+                    item.adressesOperateurs[0].long,
+                  ]}
+                >
+                  <Popup>
+                    {item.raisonSociale} <br />
+                    {item.adressesOperateurs[0].lieu} <br />
+                    {item.adressesOperateurs[0].ville}
+                  </Popup>
+                </Marker>
+              </>
             );
           })}
           <LocationMarker />
