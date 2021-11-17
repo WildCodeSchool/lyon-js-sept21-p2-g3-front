@@ -9,6 +9,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
 }
 
 code {
@@ -37,3 +38,31 @@ code {
   width: 100%;
   z-index: 100;
 }
+
+#share-like-addToPlanning {
+  /* opacity: 80%; */
+}
+
+.infoBulleNotCopied {
+  transform: scale(0);
+  background-color: white;
+}
+
+.infoBulleCopied {
+  transform: scale(1);
+}
+
+/* BACKGROUND */
+
+.bg-image {
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.35),
+      rgba(255, 255, 255, 0.35)
+    ),
+    url(./assets/Background-body.jpeg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/* SEARCH-BAR */

@@ -44,7 +44,7 @@ function App() {
     getRecipe();
   }, [search]);
 
-  // animation footer
+  // Animation Footer //
   const mainRef = useRef();
   const searchBoxHeight = 70;
   const [height, setHeight] = useState(searchBoxHeight);
@@ -81,12 +81,12 @@ function App() {
             <div
               ref={mainRef}
               id="main"
-              className="flex-grow overflow-y-scroll bg-third bg-opacity-30"
+              className="bg-image flex-grow overflow-y-scroll bg-third bg-opacity-30"
             >
               <Switch>
                 <Route exact path="/">
                   {' '}
-                  <Home recipes={recipes} />
+                  <Home recipes={recipes} search={search} />
                 </Route>
                 <Route exact path="/recipe/:id" component={RecipeDetails} />
                 <Route path="/favorites" component={Favorites} />

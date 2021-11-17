@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddBoxIcon from '@mui/icons-material/AddBox';
@@ -13,32 +14,36 @@ const RecipeTile = ({ recipeId, imgSrc, imgAlt, date, lunch, diner }) => {
   const { favoritesId, setFavoritesId } = useContext(FavoritesContext);
   const [isFavorite, setIsFavorite] = useState(favoritesId.includes(id));
 
+  const truncate = (str) => {
+    const none = ' . . .';
+    return str.length > 25 ? str.substring(0, 20) + none : str;
+  };
+
   return (
     <div>
       <div
         id="RecipeTile"
-        className="flex justify-center w-min rounded-3xl shadow-xl"
+        className="flex justify-center w-min rounded-3xl box-shadow my-4"
       >
         <div
           id="RecipeContainer"
           className=" relative w-80 m-auto rounded-2xl pt-7"
         >
-          <Link to="/recipe:id">
+          <Link to={`/recipe/${id}`}>
             {date ? (
-              <div className=" absolute z-10 date flex flex-row justify-center bg-background rounded-t-2xl h-16 w-80 items-center -mb-20 ">
-                <h1 className="text-primary font-bold text-2xl pl-3">
-                  {' '}
-                  {date}
-                </h1>
+              <div className=" absolute z-10 date flex flex-row justify-center bg-background rounded-t-2xl h-16 w-80 items-center -mt-8">
+                <h2 className="text-primary font-bold text-xl pl-2">
+                  {moment(date).format('dddd MMMM Do')}
+                </h2>
 
                 {lunch && (
-                  <span className="text-third text-3xl pl-7">
+                  <span className="text-third text-3xl pl-4">
                     <WbSunnyIcon sx={{ fontSize: 40 }} />
                   </span>
                 )}
 
                 {diner && (
-                  <span className="text-third text-3xl pl-7">
+                  <span className="text-third text-3xl pl-4 pr-4">
                     <Brightness2Icon sx={{ fontSize: 40 }} />
                   </span>
                 )}
@@ -49,7 +54,7 @@ const RecipeTile = ({ recipeId, imgSrc, imgAlt, date, lunch, diner }) => {
             <img
               src={imgSrc}
               alt={imgAlt}
-              className="rounded-t-2xl w-80 opacity-80"
+              className="rounded-t-2xl w-80 -mt-7"
             />
           </Link>
           <div id="RecipeTitleContainer" className="relative">
@@ -83,8 +88,10 @@ const RecipeTile = ({ recipeId, imgSrc, imgAlt, date, lunch, diner }) => {
               </div>{' '}
             </Link>
             <div className="flex items-center justify-center h-20 bg-recipeWhite rounded-b-2xl text-primary font-bold">
-              <Link to={`/recipe/${recipeId}`}>
-                <h3 id="RecipeTitle"> {imgAlt} </h3>
+              <Link to={`/recipe/${id}`}>
+                <h3 id="RecipeTitle" className="mt-2 text-lg ">
+                  {truncate(imgAlt)}
+                </h3>
               </Link>
             </div>
           </div>
