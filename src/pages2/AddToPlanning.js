@@ -21,7 +21,10 @@ const AddToPlanning = () => {
         `https://api.edamam.com/api/recipes/v2/%23${id}?type=public&app_id=f3601de5&app_key=960c7d96572cfedbc3eb6bffbfaf24c9`
       )
       .then((result) => result.data)
-      .then((data) => setRecipe(data.recipe));
+      .then((data) => {
+        console.log(data);
+        setRecipe(data.recipe);
+      });
   };
 
   useEffect(() => {
@@ -56,6 +59,7 @@ const AddToPlanning = () => {
                 diner,
                 image: recipe.image,
                 title: recipe.label,
+                ingredients: recipe.ingredients,
               }
             );
           }}
