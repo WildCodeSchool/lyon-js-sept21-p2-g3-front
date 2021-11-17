@@ -8,16 +8,16 @@ function Home({ recipes, search }) {
       <div className="flex-auto text-xl font-semibold justify-items-center text-center">
         <h1
           id="suggestions"
-          className="p-2 my-2 border-t-4 border-b-4 border-background bg-third bg-opacity-70 text-background "
+          className="p-2 border-b-4 border-l-4 border-r-4 border-background bg-background text-primary rounded-b-full"
         >
-          Suggestions du jour
+          MY DAILY SUGGESTIONS
         </h1>
         <SuggestRecipies />;
       </div>
     );
   }
   return (
-    <div id="Home" className="flex flex-col justify-center items-center">
+    <div id="Home" className="flex flex-col justify-center items-center pb-20">
       {recipes.map((info) => {
         return (
           <RecipeTile

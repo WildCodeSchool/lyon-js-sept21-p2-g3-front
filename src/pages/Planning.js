@@ -16,7 +16,7 @@ const Planning = () => {
 
   return (
     <>
-      <div className="grid justify-items-center pb-32">
+      <div className="grid justify-items-center pb-20">
         <Calendar />
         {listPlanning.map((recipe) => {
           return (
