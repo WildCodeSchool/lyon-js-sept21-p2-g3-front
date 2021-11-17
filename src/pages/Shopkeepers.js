@@ -73,9 +73,9 @@ function Shopkeepers() {
 
   return (
     <>
-      <div className="flex-auto text-xl font-semibold justify-items-center text-center">
-        <h1 className="p-2 my-2 border-t-4 border-b-4 border-background bg-background bg-opacity-60">
-          Find your ShoopKeepers
+      <div className="flex-auto text-lg font-semibold justify-items-center text-center">
+        <h1 className="p-2 border-b-4 border-l-4 border-r-4 border-background bg-background text-primary rounded-b-full mb-4">
+          MY SHOOPKEEPERS
         </h1>
         <MapContainer
           className="h-80"
@@ -108,12 +108,12 @@ function Shopkeepers() {
           <LocationMarker />
         </MapContainer>
       </div>
-      <section className=" bg-four container">
+      <section className=" bg-four container pb-20 text-lg">
         <div className="m-8">
           {dataShopkeepers.map((item) => {
             return (
-              <div className="mx-0 mb-8 text-center">
-                <div className="p-0 overflow-hidden h-100 shadow-lg bg-background bg-opacity-60 rounded-md">
+              <div className="-mx-4 mb-8 text-center">
+                <div className="overflow-hidden h-100 box-shadow bg-background text-primary rounded-2xl ">
                   <div className="card-body">
                     <img
                       src={

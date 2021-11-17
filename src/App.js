@@ -81,7 +81,7 @@ function App() {
 
             <div
               id="main"
-              className="flex-grow overflow-y-scroll bg-third bg-opacity-30"
+              className="bg-image flex-grow overflow-y-scroll bg-third bg-opacity-30"
             >
               <Switch>
                 <Route exact path="/">

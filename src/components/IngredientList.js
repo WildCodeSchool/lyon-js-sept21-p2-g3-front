@@ -55,7 +55,7 @@ export default function IngredientList() {
                   sx={{
                     color: '#2E1F27',
                     '&.Mui-checked': {
-                      color: '#DD7230',
+                      color: '#FDB500',
                     },
                   }}
                 />
@@ -64,13 +64,15 @@ export default function IngredientList() {
             >
               <ListItemButton>
                 <ListItemAvatar>
-                  <Avatar
-                    alt={`${value.food}`}
-                    src={`${value.image}`}
-                    sx={{ border: '#2E1F27' }}
-                  />
+                  <Avatar alt={`${value.food}`} src={`${value.image}`} />
                 </ListItemAvatar>
                 <ListItemText
+                  sx={{
+                    '& .MuiTypography-root': {
+                      fontWeight: 'bold',
+                      fontSize: 17,
+                    },
+                  }}
                   id={value.foodId}
                   primary={`${value.food}  (${Math.round(value.quantity)} ${
                     value.measure
@@ -81,12 +83,15 @@ export default function IngredientList() {
           );
         })}
         <Button
-          onClick={() => handleToggle([...checked].shift())}
+          onClick={setChecked}
           type="submit"
-          variant="contained"
+          variant="raised"
           sx={{
-            marginTop: 2,
+            color: '#FDB500',
+            bgcolor: '#2E1F27',
             padding: 2,
+            marginTop: 2,
+            fontWeight: 'bold',
           }}
         >
           DELETE ITEMS

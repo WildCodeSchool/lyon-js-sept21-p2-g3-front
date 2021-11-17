@@ -19,7 +19,7 @@ function NavBar({ setSearch }) {
           to="/"
           className="flex flex-row justify-between items-center h-25 "
         >
-          <img src="media/1.png" alt="img-logo" className="h-20" />
+          <img src="media/1.png" alt="img-logo" className="h-20 " />
           <img src="media/2.png" alt="img-logo" className="h-20" />
         </NavLink>
         <form
