@@ -57,6 +57,8 @@ const AddToPlanning = () => {
               diner,
               image: recipe.image,
               label: recipe.label,
+            });
+            axios.put(`${process.env.REACT_APP_URL_API_SERVER}/shopping-list`, {
               ingredients: recipe.ingredients,
             });
           }}
