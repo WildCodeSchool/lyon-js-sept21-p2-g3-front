@@ -64,7 +64,11 @@ export default function IngredientList() {
             >
               <ListItemButton>
                 <ListItemAvatar>
-                  <Avatar alt={`${value.food}`} src={`${value.image}`} />
+                  <Avatar
+                    alt={`${value.name}`}
+                    src={`${value.image}`}
+                    sx={{ border: '#2E1F27' }}
+                  />
                 </ListItemAvatar>
                 <ListItemText
                   sx={{
@@ -74,7 +78,7 @@ export default function IngredientList() {
                     },
                   }}
                   id={value.foodId}
-                  primary={`${value.food}  (${Math.round(value.quantity)} ${
+                  primary={`${value.name}  (${Math.round(value.quantity)} ${
                     value.measure
                   })`}
                 />
