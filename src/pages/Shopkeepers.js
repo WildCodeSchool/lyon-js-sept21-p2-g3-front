@@ -75,7 +75,7 @@ function Shopkeepers() {
     <>
       <div className="flex-auto text-lg font-semibold justify-items-center text-center">
         <h1 className="p-2 border-b-4 border-l-4 border-r-4 border-background bg-background text-primary rounded-b-full mb-4">
-          MY SHOOPKEEPERS
+          MY SHOPKEEPERS
         </h1>
         <MapContainer
           className="h-80"
@@ -99,8 +99,11 @@ function Shopkeepers() {
               >
                 <Popup>
                   {item.raisonSociale}
+                  <br />
                   {item.adressesOperateurs[0].lieu}
+                  <br />
                   {item.adressesOperateurs[0].ville}
+                  <br />
                 </Popup>
               </Marker>
             );
