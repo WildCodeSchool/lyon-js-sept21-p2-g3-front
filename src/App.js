@@ -19,6 +19,7 @@ function App() {
   // construction of the arrays with the wanted informations from the api for the app
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState('');
+
   const getRecipe = () => {
     axios
 
@@ -43,8 +44,8 @@ function App() {
     getRecipe();
   }, [search]);
 
+  // animation footer
   const mainRef = useRef();
-
   const searchBoxHeight = 70;
   const [height, setHeight] = useState(searchBoxHeight);
   const scroll = useScroll({
@@ -78,6 +79,7 @@ function App() {
             <NavBar setSearch={setSearch} />
 
             <div
+              ref={mainRef}
               id="main"
               className="flex-grow overflow-y-scroll bg-third bg-opacity-30"
             >
