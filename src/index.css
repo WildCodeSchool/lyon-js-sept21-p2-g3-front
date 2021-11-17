@@ -76,6 +76,6 @@ code {
   text-align: center;
   width: 200px;
 }
-
-.Marker {
+.L.Icon.Default.prototype.options {
+  color: #dd7230;
 }
