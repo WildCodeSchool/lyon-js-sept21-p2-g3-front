@@ -10,7 +10,7 @@ import {
   Circle,
 } from 'react-leaflet';
 
-const redOptions = { color: 'red' };
+const redOptions = { color: '#FDB500' };
 
 function LocationMarker() {
   const [position, setPosition] = useState(null);
