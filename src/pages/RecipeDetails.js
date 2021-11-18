@@ -12,6 +12,7 @@ import MyFoodAPI from '../MyFoodAPI';
 const RecipeDetails = () => {
   const { id } = useParams();
   const [recipe, setRecipe] = useState();
+  console.log(recipe);
 
   const { favoritesId, setFavoritesId } = useContext(FavoritesContext);
   const [isFavorite, setIsFavorite] = useState(favoritesId.includes(id));

@@ -44,9 +44,11 @@ function Favorites() {
   return (
     <div
       id="main"
-      className="flex flex-col justify-center items-center gap-10 pb-8"
+      className="flex-auto justify-center text-xl font-semibold justify-items-center text-center"
     >
-      <h1> Favorites</h1>
+      <h1 className="p-2 border-b-4 border-l-4 border-r-4 border-background bg-background text-primary rounded-b-full">
+        MY FAVORITES
+      </h1>
       {favoriteRecipes.map((favorite) => {
         console.log('favorite from favoriteRecipes : ', favorite);
         return (

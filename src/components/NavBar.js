@@ -22,6 +22,15 @@ function NavBar({ setSearch }) {
           <img src="media/1.png" alt="img-logo" className="h-20 " />
           <img src="media/2.png" alt="img-logo" className="h-20" />
         </NavLink>
+        {/* <div className="lg:hidden">
+          <ul className="flex flex-row justify-between">
+            <li>HOME</li>
+            <li>MY FAVORITES</li>
+            <li>MY SHOPPING-LIST</li>
+            <li>MY PLANNING</li>
+            <li>MY SHOPKEEPERS</li>
+          </ul>
+        </div> */}
         <form
           onSubmit={(e) => {
             e.preventDefault();

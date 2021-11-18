@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from 'react';
-import uniqid from 'uniqid';
 import { CircularProgress } from '@mui/material';
 import RecipeTile from '../components/RecipeTile';
 import Calendar from '../components/Calendar';
@@ -21,7 +20,7 @@ const Planning = () => {
         {listPlanning.map((recipe) => {
           return (
             <RecipeTile
-              key={uniqid()}
+              key={recipe.id_recipe}
               recipeId={recipe.id_recipe}
               imgAlt={recipe.label}
               imgSrc={recipe.image}
