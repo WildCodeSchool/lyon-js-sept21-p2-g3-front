@@ -20,6 +20,11 @@ code {
   color: #dd7230;
 }
 
+.leaflet-marker-icon.leaflet-interactive {
+  filter: invert(100%); 
+  -webkit-filter:invert(100%); 
+}
+
 .box-shadow {
   box-shadow: 10px 7px 5px rgba(0, 0, 0, 0.2);
 }

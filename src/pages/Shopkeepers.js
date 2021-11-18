@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 // import { Map } from 'leaflet';
 import React, { useEffect, useState } from 'react';
 import {
@@ -23,9 +24,12 @@ function LocationMarker() {
       map.flyTo(e.latlng, map.getZoom());
     },
   });
+  useEffect(() => {
+    map.locate();
+  }, []);
 
   return position === null ? null : (
-    <Marker position={position} markerColor={redOptions}>
+    <Marker position={position}>
       {/* <Popup>Vous êtes ici !</Popup> */}
       <Circle center={position} radius={10000} pathOptions={redOptions} />
     </Marker>
@@ -78,6 +82,7 @@ function Shopkeepers() {
         <h1 className="p-2 my-2 border-t-4 border-b-4 border-background bg-background bg-opacity-60">
           Find your ShoopKeepers
         </h1>
+
         <MapContainer
           className="h-80"
           id="mapid"
@@ -98,7 +103,7 @@ function Shopkeepers() {
                   item.adressesOperateurs[0].long,
                 ]}
               >
-                <Popup className="h-20">
+                <Popup className="popupCustom text-primary">
                   {item.raisonSociale}
                   {item.adressesOperateurs[0].lieu}
                   {item.adressesOperateurs[0].ville}
