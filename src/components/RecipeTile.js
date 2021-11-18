@@ -6,10 +6,21 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import Brightness2Icon from '@mui/icons-material/Brightness2';
 import moment from 'moment';
+import DeleteForever from '@mui/icons-material/DeleteForever';
 import FavoritesContext from '../contexts/FavoritesContexts';
 import MyFoodAPI from '../MyFoodAPI';
 
-const RecipeTile = ({ recipeId, imgSrc, imgAlt, date, lunch, diner }) => {
+const RecipeTile = ({
+  recipeId,
+  imgSrc,
+  imgAlt,
+  date,
+  lunch,
+  diner,
+  isInPlanning,
+  setDeleteFromPlanning,
+  deleteFromPlanning,
+}) => {
   const id = recipeId.split('#')[1];
   const { favoritesId, setFavoritesId } = useContext(FavoritesContext);
   const [isFavorite, setIsFavorite] = useState(favoritesId.includes(id));
@@ -85,12 +96,34 @@ const RecipeTile = ({ recipeId, imgSrc, imgAlt, date, lunch, diner }) => {
                 <FavoriteBorderIcon sx={{ fontSize: 45, color: '#DD7230' }} />
               )}{' '}
             </div>{' '}
-            <Link to={`/addtoplanning/${id}`}>
+            {isInPlanning ? (
               <div className="flex items-center justify-center bg-recipeWhite absolute z-20 right-5 -top-8 w-16 h-16 rounded-full">
-                {' '}
-                <AddBoxIcon sx={{ fontSize: 45, color: '#DD7230' }} />{' '}
-              </div>{' '}
-            </Link>
+                <button
+                  type="button"
+                  onClick={() => {
+                    console.log('deleted!');
+                    MyFoodAPI.delete('/planning', {
+                      data: {
+                        id_recipe: recipeId,
+                        date,
+                        lunch,
+                        diner,
+                      },
+                    }).then(() => setDeleteFromPlanning(!deleteFromPlanning));
+                  }}
+                  alt={imgAlt}
+                >
+                  {' '}
+                  <DeleteForever />
+                </button>
+              </div>
+            ) : (
+              <Link to={`/addtoplanning/${id}`}>
+                <div className="flex items-center justify-center bg-recipeWhite absolute z-20 right-5 -top-8 w-16 h-16 rounded-full">
+                  <AddBoxIcon sx={{ fontSize: 45, color: '#DD7230' }} />
+                </div>{' '}
+              </Link>
+            )}
             <div className="flex items-center justify-center h-20 bg-recipeWhite rounded-b-2xl text-primary font-bold">
               <Link to={`/recipe/${id}`}>
                 <h3 id="RecipeTitle" className="mt-2 text-lg ">
