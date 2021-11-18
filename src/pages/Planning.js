@@ -33,9 +33,6 @@ const Planning = () => {
           })}
         </div>
       </div>
-      <div className="flex items-center justify-center bg-background text-primary text-xl h-20 sm:hidden">
-        <p className="text-center"> Make with ❤️ by Wild Code School </p>
-      </div>
     </>
   );
 };
