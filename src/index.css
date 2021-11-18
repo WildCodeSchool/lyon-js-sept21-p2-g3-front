@@ -21,8 +21,8 @@ code {
 }
 
 .leaflet-marker-icon.leaflet-interactive {
-  filter: invert(100%); 
-  -webkit-filter:invert(100%); 
+  filter: invert(100%);
+  -webkit-filter: invert(100%);
 }
 
 .box-shadow {
