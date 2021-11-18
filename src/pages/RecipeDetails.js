@@ -39,7 +39,10 @@ const RecipeDetails = () => {
 
   return (
     <>
-      <div id="page" className="flex flex-col gap-2 items-center pb-20">
+      <div
+        id="page"
+        className="flex flex-col items-center justify-center pb-20"
+      >
         <div
           id="share-like-addToPlanning"
           className="flex flex-col gap-2 fixed top-1/4 right-2 opacity-100 z-50"
@@ -90,21 +93,24 @@ const RecipeDetails = () => {
           </div>
           <div className="infoBulleNotCopied"> Lien copié ! </div>
         </div>
-        <h2 className="text-lg text-primary bg-background font-bold text-center mx-3 py-4 px-24 rounded-2xl mt-4 mb-4">
-          {recipe.label}
-        </h2>
         <img
-          className="w-screen lg:max-w-xs rounded-2xl box-shadow"
+          className="w-screen lg:w-96 lg:h-96 lg:rounded-2xl lg:my-7 box-shadow"
           src={recipe.image}
           alt={recipe.label}
         />
-
-        <ul className="grid grid-cols-2 w-screen gap-2 ml-4 mt-4 pb-6">
+        <h2 className="text-lg text-primary bg-background font-bold text-center mx-3 py-4 px-24 rounded-2xl mt-5 mb-5">
+          {recipe.label}
+        </h2>
+        <ul className="grid grid-cols-2 align-middle w-screen mx-4 pb-6">
           {recipe.ingredients.map((ingredient) => {
             return (
-              <li className="flex flex-row gap-2 text-base mx-4 my-1 font-bold">
-                <Avatar src={ingredient.image} alt={ingredient.food} />
-                {`${ingredient.food}`}
+              <li className="flex flex-row text-base my-3 font-bold lg:mx-56">
+                <Avatar
+                  src={ingredient.image}
+                  alt={ingredient.food}
+                  sx={{ margin: 1 }}
+                />
+                <h4 className="mt-3 ml-2">{`${ingredient.food}`}</h4>
               </li>
             );
           })}
