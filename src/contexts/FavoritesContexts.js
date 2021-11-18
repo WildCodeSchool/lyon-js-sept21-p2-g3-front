@@ -10,7 +10,10 @@ export const FavoritesContextProviders = ({ children }) => {
     MyFoodAPI.get(`/favorites`)
       .then((response) => response.data)
       .then((data) => {
-        setFavoritesId(data);
+        data.map((recipe) =>
+          setFavoritesId([...favoritesId, recipe.id_recipe])
+        );
+        // setFavoritesId(data);
       });
   };
 

@@ -8,23 +8,26 @@ import Checkbox from '@mui/material/Checkbox';
 import Avatar from '@mui/material/Avatar';
 import { CircularProgress, Button } from '@mui/material';
 import AddToShoppingListContext from '../contexts/AddToShoppingListContext';
+import MyFoodAPI from '../MyFoodAPI';
 
 export default function IngredientList() {
-  const { shoppingList } = useContext(AddToShoppingListContext);
-  // const { shoppingList, setShoppingList } = useContext(AddToShoppingListContext);
-  const [checked, setChecked] = useState([]);
-  // const { listPlanning } = React.useContext();
+  const { shoppingList, getShoppingList } = useContext(
+    AddToShoppingListContext
+  );
 
-  const handleToggle = (value) => () => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
+  const [ingredientToDelete, setIngredientToDelete] = useState([]);
 
-    if (currentIndex === -1) {
-      newChecked.push(value);
+  const handleToggle = (value) => {
+    console.log('ingredient to delete before: ', ingredientToDelete);
+    if (ingredientToDelete.includes(value.id_ingredient)) {
+      const newIngredientToDelete = ingredientToDelete.filter(
+        (i) => i !== value.id_ingredient
+      );
+      setIngredientToDelete(newIngredientToDelete);
     } else {
-      newChecked.splice(currentIndex, 1);
+      setIngredientToDelete([...ingredientToDelete, value.id_ingredient]);
     }
-    setChecked(newChecked);
+    console.log('ingredient to delete after : ', ingredientToDelete);
   };
 
   if (!shoppingList) {
@@ -45,13 +48,13 @@ export default function IngredientList() {
         {shoppingList.map((value) => {
           return (
             <ListItem
-              key={value.foodId}
-              onClick={handleToggle(value)}
-              checked={checked.indexOf(value) !== -1}
+              key={value.id_ingredient}
+              onClick={() => handleToggle(value)}
+              // checked={checked.indexOf(value) !== -1}
               secondaryAction={
                 <Checkbox
-                  onChange={handleToggle(value)}
-                  checked={checked.indexOf(value) !== -1}
+                  onChange={() => handleToggle(value)}
+                  // checked={checked.indexOf(value) !== -1}
                   sx={{
                     color: '#2E1F27',
                     '&.Mui-checked': {
@@ -64,7 +67,11 @@ export default function IngredientList() {
             >
               <ListItemButton>
                 <ListItemAvatar>
-                  <Avatar alt={`${value.food}`} src={`${value.image}`} />
+                  <Avatar
+                    alt={`${value.name}`}
+                    src={`${value.image}`}
+                    sx={{ border: '#2E1F27' }}
+                  />
                 </ListItemAvatar>
                 <ListItemText
                   sx={{
@@ -73,8 +80,8 @@ export default function IngredientList() {
                       fontSize: 17,
                     },
                   }}
-                  id={value.foodId}
-                  primary={`${value.food}  (${Math.round(value.quantity)} ${
+                  id={value.id_ingredient}
+                  primary={`${value.name}  (${Math.round(value.quantity)} ${
                     value.measure
                   })`}
                 />
@@ -82,20 +89,34 @@ export default function IngredientList() {
             </ListItem>
           );
         })}
-        <Button
-          onClick={setChecked}
-          type="submit"
-          variant="raised"
-          sx={{
-            color: '#FDB500',
-            bgcolor: '#2E1F27',
-            padding: 2,
-            marginTop: 2,
-            fontWeight: 'bold',
-          }}
-        >
-          DELETE ITEMS
-        </Button>
+
+        {shoppingList.length !== 0 ? (
+          <Button
+            onClick={() => {
+              console.log('ingredient send : ', ingredientToDelete);
+              MyFoodAPI.delete('/shopping-list', {
+                data: {
+                  ingredientToDelete,
+                },
+              }).then(() => {
+                getShoppingList();
+              });
+            }}
+            type="submit"
+            variant="raised"
+            sx={{
+              color: '#FDB500',
+              bgcolor: '#2E1F27',
+              padding: 2,
+              marginTop: 2,
+              fontWeight: 'bold',
+            }}
+          >
+            DELETE ITEMS
+          </Button>
+        ) : (
+          'Aucun ingrédient dans la liste ! '
+        )}
       </List>
     </>
   );
