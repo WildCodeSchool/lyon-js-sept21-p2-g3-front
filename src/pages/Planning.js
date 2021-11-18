@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import uniqid from 'uniqid';
 import { CircularProgress } from '@mui/material';
 import RecipeTile from '../components/RecipeTile';
@@ -9,7 +9,9 @@ import MyFoodAPI from '../MyFoodAPI';
 const Planning = () => {
   const { listPlanning, getPlanning } = useContext(AddToPlanningContext);
 
-  useEffect(() => getPlanning(), []);
+  const [deleteFromPlanning, setDeleteFromPlanning] = useState(false);
+
+  useEffect(() => getPlanning(), [deleteFromPlanning]);
 
   if (listPlanning === []) {
     return <CircularProgress />;
@@ -33,7 +35,7 @@ const Planning = () => {
                       lunch: recipe.lunch,
                       diner: recipe.diner,
                     },
-                  });
+                  }).then(() => setDeleteFromPlanning(!deleteFromPlanning));
                 }}
                 alt={recipe.id_label}
               >
