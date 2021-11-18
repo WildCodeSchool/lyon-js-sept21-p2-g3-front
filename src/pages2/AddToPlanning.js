@@ -4,7 +4,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Input from '@mui/material/Input';
 import CircularProgress from '@mui/material/CircularProgress';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import moment from 'moment';
 import RecipeTile from '../components/RecipeTile';
@@ -117,6 +117,7 @@ const AddToPlanning = () => {
             }
             label="Lunch"
           />
+
           <FormControlLabel
             control={
               <Checkbox
@@ -133,12 +134,13 @@ const AddToPlanning = () => {
             }
             label="Diner"
           />
+
           <Button
             type="submit"
             variant="raised"
             sx={{ color: '#FDB500', bgcolor: '#2E1F27', padding: 2 }}
           >
-            Add to planning
+            <Link to="/planning"> Add to planning</Link>
           </Button>
         </form>
       </div>
