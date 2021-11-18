@@ -4,8 +4,9 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Input from '@mui/material/Input';
 import CircularProgress from '@mui/material/CircularProgress';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
+import moment from 'moment';
 import RecipeTile from '../components/RecipeTile';
 
 const AddToPlanning = () => {
@@ -34,44 +35,70 @@ const AddToPlanning = () => {
   console.log(recipe);
 
   if (!recipe) {
-    return <CircularProgress />;
+    return <CircularProgress sx={{}} />;
   }
 
   return (
     <>
-      <div className="flex flex-col items-center pb-24 ">
-        <RecipeTile
-          recipeId={recipe.uri}
-          imgAlt={recipe.label}
-          imgSrc={recipe.image}
-        />
+      <div className="flex flex-col items-center pb-24">
         <form
-          className="flex flex-col items-center mt-10"
+          className="flex flex-col items-center mt-5"
           onSubmit={(e) => {
             e.preventDefault();
             console.log(id, date, lunch, diner);
-            axios.post(
-              `${process.env.REACT_APP_URL_API_SERVER}/addtoplanning/`,
-              {
+            axios
+              .post(`${process.env.REACT_APP_URL_API_SERVER}/planning`, {
                 id: `.#${id}`,
                 date,
                 lunch,
                 diner,
                 image: recipe.image,
-                title: recipe.label,
-                ingredients: recipe.ingredients,
-              }
-            );
+                label: recipe.label,
+              })
+              .catch((err) => {
+                if (err.response) {
+                  alert('A meal is already saved for this time !');
+                  console.log('error : ', err);
+                }
+              });
+            axios.put(`${process.env.REACT_APP_URL_API_SERVER}/shopping-list`, {
+              ingredients: recipe.ingredients,
+            });
           }}
         >
-          <InputLabel htmlFor="my-input">When ? </InputLabel>
+          <InputLabel
+            htmlFor="my-input"
+            sx={{
+              color: '#2E1F27',
+              fontSize: 25,
+              fontWeight: 'bold',
+              textAlign: 'center',
+            }}
+          >
+            When do you want to eat ... ?
+          </InputLabel>
+          <RecipeTile
+            recipeId={recipe.uri}
+            imgAlt={recipe.label}
+            imgSrc={recipe.image}
+          />
           <Input
             id="my-input"
             type="date"
             onChange={(e) => {
-              setDate(e.target.value);
+              if (e.target.value >= moment().format()) {
+                setDate(e.target.value);
+              } else {
+                alert("You can't choose a date before today !");
+              }
             }}
             required
+            sx={{
+              paddingX: 5,
+              color: '#2E1F27',
+              fontSize: 20,
+              fontWeight: 'bold',
+            }}
           />
           <FormControlLabel
             control={
@@ -80,22 +107,40 @@ const AddToPlanning = () => {
                   setLunch(!lunch);
                 }}
                 defaultChecked
+                sx={{
+                  color: '#2E1F27',
+                  '&.Mui-checked': {
+                    color: '#FDB500',
+                  },
+                }}
               />
             }
             label="Lunch"
           />
+
           <FormControlLabel
             control={
               <Checkbox
                 onClick={() => {
                   setDiner(!diner);
                 }}
+                sx={{
+                  color: '#2E1F27',
+                  '&.Mui-checked': {
+                    color: '#FDB500',
+                  },
+                }}
               />
             }
             label="Diner"
           />
-          <Button type="submit" variant="contained">
-            Add to planning
+
+          <Button
+            type="submit"
+            variant="raised"
+            sx={{ color: '#FDB500', bgcolor: '#2E1F27', padding: 2 }}
+          >
+            <Link to="/planning"> Add to planning</Link>
           </Button>
         </form>
       </div>

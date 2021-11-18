@@ -46,7 +46,6 @@ function App() {
 
   // Animation Footer //
   const mainRef = useRef();
-
   const searchBoxHeight = 70;
   const [height, setHeight] = useState(searchBoxHeight);
   const scroll = useScroll({
@@ -80,8 +79,9 @@ function App() {
             <NavBar setSearch={setSearch} />
 
             <div
+              ref={mainRef}
               id="main"
-              className="flex-grow overflow-y-scroll bg-third bg-opacity-30"
+              className="bg-image flex-grow overflow-y-scroll bg-third bg-opacity-30"
             >
               <Switch>
                 <Route exact path="/">

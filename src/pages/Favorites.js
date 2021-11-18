@@ -9,21 +9,34 @@ function Favorites() {
 
   const { favoritesId, getFavoritesId } = useContext(FavoritesContext);
 
-  const getFavorite = (favoriteId) => {
-    return axios
-      .get(
-        ` https://api.edamam.com/api/recipes/v2/%23${favoriteId}?type=public&app_id=f3601de5&app_key=960c7d96572cfedbc3eb6bffbfaf24c9`
-      )
-      .then((response) => response.data)
-      .then((data) => data);
+  // const getFavorite = (favoriteId) => {
+  //   return axios
+  //     .get(
+  //       ` https://api.edamam.com/api/recipes/v2/%23${favoriteId}?type=public&app_id=f3601de5&app_key=960c7d96572cfedbc3eb6bffbfaf24c9`
+  //     )
+  //     .then((response) => response.data)
+  //     .then((data) => data);
+  // };
+
+  const getFavorite = () => {
+    axios
+      .get(`${process.env.REACT_APP_URL_API_SERVER}/favorites`)
+      .then((response) => {
+        return response.data;
+      })
+      .then((data) => setFavoriteRecipes(data));
   };
 
+  // useEffect(() => {
+  //   Promise.all(
+  //     favoritesId.map((id) => {
+  //       return getFavorite(id);
+  //     })
+  //   ).then((favoritesObject) => setFavoriteRecipes(favoritesObject));
+  // }, [favoritesId]);
+
   useEffect(() => {
-    Promise.all(
-      favoritesId.map((id) => {
-        return getFavorite(id);
-      })
-    ).then((favoritesObject) => setFavoriteRecipes(favoritesObject));
+    getFavorite();
   }, [favoritesId]);
 
   useEffect(() => getFavoritesId(), []);
@@ -35,12 +48,13 @@ function Favorites() {
     >
       <h1> Favorites</h1>
       {favoriteRecipes.map((favorite) => {
+        console.log('favorite from favoriteRecipes : ', favorite);
         return (
           <RecipeTile
-            key={favorite.recipe.uri}
-            recipeId={favorite.recipe.uri}
-            imgSrc={favorite.recipe.image}
-            imgAlt={favorite.recipe.label}
+            key={favorite.id_recipe}
+            recipeId={`.#${favorite.id_recipe}`}
+            imgSrc={favorite.image}
+            imgAlt={favorite.label}
           />
         );
       })}

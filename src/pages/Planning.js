@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import uniqid from 'uniqid';
 import { CircularProgress } from '@mui/material';
 import RecipeTile from '../components/RecipeTile';
@@ -8,7 +8,9 @@ import AddToPlanningContext from '../contexts/AddToPlanningContext';
 const Planning = () => {
   const { listPlanning, getPlanning } = useContext(AddToPlanningContext);
 
-  useEffect(() => getPlanning(), []);
+  const [deleteFromPlanning, setDeleteFromPlanning] = useState(false);
+
+  useEffect(() => getPlanning(), [deleteFromPlanning]);
 
   if (listPlanning === []) {
     return <CircularProgress />;
@@ -16,19 +18,24 @@ const Planning = () => {
 
   return (
     <>
-      <div className="grid justify-items-center pb-32">
+      <div className="grid justify-items-center pb-20">
         <Calendar />
         {listPlanning.map((recipe) => {
           return (
-            <RecipeTile
-              key={uniqid()}
-              recipeId={recipe.id}
-              imgAlt={recipe.title}
-              imgSrc={recipe.img}
-              date={recipe.date}
-              lunch={recipe.lunch}
-              diner={recipe.diner}
-            />
+            <>
+              <RecipeTile
+                key={uniqid()}
+                recipeId={recipe.id_recipe}
+                imgAlt={recipe.label}
+                imgSrc={recipe.image}
+                date={recipe.date}
+                lunch={recipe.lunch}
+                diner={recipe.diner}
+                isInPlanning
+                setDeleteFromPlanning={setDeleteFromPlanning}
+                deleteFromPlanning={deleteFromPlanning}
+              />
+            </>
           );
         })}
       </div>

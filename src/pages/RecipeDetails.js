@@ -38,7 +38,7 @@ const RecipeDetails = () => {
 
   return (
     <>
-      <div id="page" className="flex flex-col gap-2 items-center pb-24">
+      <div id="page" className="flex flex-col gap-2 items-center pb-20">
         <div
           id="share-like-addToPlanning"
           className="flex flex-col gap-2 fixed top-1/4 right-2 opacity-100 z-50"
@@ -47,16 +47,20 @@ const RecipeDetails = () => {
             className="flex items-center justify-center bg-recipeWhite z-20 left-5 -top-8 w-16 h-16 rounded-full"
             onClick={() => {
               setIsFavorite(!isFavorite);
-              MyFoodAPI.post(`/favorites/${id}`, {
-                isfavorite: isFavorite,
-              }).then(() => {
-                if (!isFavorite) {
+              if (!isFavorite) {
+                MyFoodAPI.post(`/favorites/${id}`, {
+                  image: recipe.image,
+                  label: recipe.label,
+                }).then(() => {
                   setFavoritesId([...favoritesId, id]);
-                } else {
+                  console.log('favoritesId : ', favoritesId);
+                });
+              } else {
+                MyFoodAPI.delete(`/favorites/${id}`).then(() => {
                   const newFavoritesId = favoritesId.filter((i) => i !== id);
                   setFavoritesId(newFavoritesId);
-                }
-              });
+                });
+              }
             }}
           >
             {' '}
@@ -94,20 +98,30 @@ const RecipeDetails = () => {
           src={recipe.image}
           alt={recipe.label}
         />
-        <h2> {recipe.label} </h2>
+        <h2 className="text-lg text-primary bg-background font-bold text-center mx-3 py-4 px-24 rounded-2xl">
+          {recipe.label}
+        </h2>
         <ul className="grid grid-cols-2 w-screen gap-2 ml-4 mt-4 pb-6">
           {recipe.ingredients.map((ingredient) => {
             return (
-              <li className="flex flex-row gap-2">
-                <Avatar src={ingredient.image} alt={ingredient.food} />{' '}
+              <li className="flex flex-row gap-2 text-base mx-4 my-1 font-bold">
+                <Avatar src={ingredient.image} alt={ingredient.food} />
                 {`${ingredient.food}`}
               </li>
             );
           })}
         </ul>
-        <Button variant="contained" href={recipe.url}>
-          {' '}
-          Recette détaillée{' '}
+        <Button
+          variant="raised"
+          sx={{
+            color: '#FDB500',
+            bgcolor: '#2E1F27',
+            padding: 2,
+            fontWeight: 'bold',
+          }}
+          href={recipe.url}
+        >
+          Recette détaillée
         </Button>
       </div>
     </>
