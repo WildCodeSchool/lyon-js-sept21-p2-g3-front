@@ -33,7 +33,7 @@ const SuggestRecipies = () => {
             key={recipe.id_recipe}
             imgAlt={recipe.label}
             imgSrc={recipe.image}
-            recipeId={recipe.id_recipe}
+            recipeId={`.#${recipe.id_recipe}`}
           />
         );
       })}
