@@ -4,6 +4,7 @@ import { CircularProgress } from '@mui/material';
 import RecipeTile from '../components/RecipeTile';
 import Calendar from '../components/Calendar';
 import AddToPlanningContext from '../contexts/AddToPlanningContext';
+import MyFoodAPI from '../MyFoodAPI';
 
 const Planning = () => {
   const { listPlanning, getPlanning } = useContext(AddToPlanningContext);
@@ -20,15 +21,35 @@ const Planning = () => {
         <Calendar />
         {listPlanning.map((recipe) => {
           return (
-            <RecipeTile
-              key={uniqid()}
-              recipeId={recipe.id_recipe}
-              imgAlt={recipe.label}
-              imgSrc={recipe.image}
-              date={recipe.date}
-              lunch={recipe.lunch}
-              diner={recipe.diner}
-            />
+            <>
+              <button
+                type="button"
+                onClick={() => {
+                  console.log('deleted!');
+                  MyFoodAPI.delete('/planning', {
+                    data: {
+                      id_recipe: recipe.id_recipe,
+                      date: recipe.date,
+                      lunch: recipe.lunch,
+                      diner: recipe.diner,
+                    },
+                  });
+                }}
+                alt={recipe.id_label}
+              >
+                {' '}
+                X
+              </button>
+              <RecipeTile
+                key={uniqid()}
+                recipeId={recipe.id_recipe}
+                imgAlt={recipe.label}
+                imgSrc={recipe.image}
+                date={recipe.date}
+                lunch={recipe.lunch}
+                diner={recipe.diner}
+              />
+            </>
           );
         })}
       </div>
