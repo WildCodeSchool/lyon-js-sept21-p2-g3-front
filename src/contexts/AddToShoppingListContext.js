@@ -11,11 +11,9 @@ export const AddToShoppingListContextProvider = ({ children }) => {
       .then((response) => response.data)
       .then((data) => {
         setShoppingList(data);
-        console.log(shoppingList);
+        console.log('shoppingList', shoppingList);
       });
   };
-
-  console.log('shoppingList', shoppingList);
 
   return (
     <AddToShoppingListContext.Provider
