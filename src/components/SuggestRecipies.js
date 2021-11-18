@@ -50,21 +50,26 @@ const SuggestRecipies = () => {
   }
 
   return (
-    <div
-      id="SuggestRecipies"
-      className="flex flex-col justify-center items-center lg:grid lg:grid-cols-3 lg:justify-items-center lg:mx-60"
-    >
-      {recipeRandom.map((recipe) => {
-        return (
-          <RecipeTile
-            key={recipe.recipe.uri}
-            imgAlt={recipe.recipe.label}
-            imgSrc={recipe.recipe.image}
-            recipeId={recipe.recipe.uri}
-          />
-        );
-      })}
-    </div>
+    <>
+      <div
+        id="SuggestRecipies"
+        className="flex flex-col justify-center items-center lg:grid lg:grid-cols-3 lg:justify-items-center lg:mx-60"
+      >
+        {recipeRandom.map((recipe) => {
+          return (
+            <RecipeTile
+              key={recipe.recipe.uri}
+              imgAlt={recipe.recipe.label}
+              imgSrc={recipe.recipe.image}
+              recipeId={recipe.recipe.uri}
+            />
+          );
+        })}
+      </div>
+      <div className="flex items-center justify-center bg-background text-primary text-xl h-20">
+        <p className="text-center"> Make with ❤️ by Wild Code School </p>
+      </div>
+    </>
   );
 };
 

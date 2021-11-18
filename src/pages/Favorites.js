@@ -42,7 +42,7 @@ function Favorites() {
   useEffect(() => getFavoritesId(), []);
 
   return (
-    <div className="flex-auto text-xl font-semibold justify-items-center text-center pb-20">
+    <div className="flex-auto text-xl font-semibold justify-items-center text-center">
       <h1 className="p-2 -mt-0 border-b-4 border-l-4 border-r-4 border-background bg-background text-primary rounded-b-full">
         MY FAVORITES
       </h1>

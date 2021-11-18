@@ -15,7 +15,7 @@ const Planning = () => {
 
   return (
     <>
-      <div className="grid justify-items-center pb-20">
+      <div className="grid justify-items-center">
         <Calendar />
         <div className="grid justify-items-center pb-20 lg:grid lg:grid-cols-3 lg:justify-items-center lg:mx-60">
           {listPlanning.map((recipe) => {
@@ -32,6 +32,9 @@ const Planning = () => {
             );
           })}
         </div>
+      </div>
+      <div className="flex items-center justify-center bg-background text-primary text-xl h-20 sm:hidden">
+        <p className="text-center"> Make with ❤️ by Wild Code School </p>
       </div>
     </>
   );

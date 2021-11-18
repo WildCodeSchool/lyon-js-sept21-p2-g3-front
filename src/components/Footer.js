@@ -9,30 +9,30 @@ import StorefrontIcon from '@mui/icons-material/Storefront';
 function Footer({ height }) {
   return (
     <div id="footer" style={{ height }}>
-      <ul className="flex flex-row justify-between bg-background h-15 py-4 px-2">
+      <ul className="flex flex-row justify-between bg-background h-15 py-4 px-2 sm:hidden">
         <li>
           <NavLink activeClassName="active" exact to="/">
-            <HomeIcon sx={{ fontSize: 45, color: '#FDB500' }} />
+            <HomeIcon sx={{ fontSize: 40, color: '#FDB500' }} />
           </NavLink>
         </li>
         <li>
           <NavLink activeClassName="active" to="/favorites">
-            <FavoriteIcon sx={{ fontSize: 45, color: '#FDB500' }} />
+            <FavoriteIcon sx={{ fontSize: 40, color: '#FDB500' }} />
           </NavLink>
         </li>
         <li>
           <NavLink activeClassName="active" to="/shopping-list">
-            <ShoppingBasketIcon sx={{ fontSize: 45, color: '#FDB500' }} />
+            <ShoppingBasketIcon sx={{ fontSize: 40, color: '#FDB500' }} />
           </NavLink>
         </li>
         <li>
           <NavLink activeClassName="active" to="/planning">
-            <CalendarTodayIcon sx={{ fontSize: 45, color: '#FDB500' }} />
+            <CalendarTodayIcon sx={{ fontSize: 40, color: '#FDB500' }} />
           </NavLink>
         </li>
         <li>
           <NavLink activeClassName="active" to="/shopkeepers">
-            <StorefrontIcon sx={{ fontSize: 45, color: '#FDB500' }} />
+            <StorefrontIcon sx={{ fontSize: 40, color: '#FDB500' }} />
           </NavLink>
         </li>
       </ul>

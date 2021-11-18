@@ -17,21 +17,26 @@ function Home({ recipes, search }) {
     );
   }
   return (
-    <div
-      id="Home"
-      className="flex flex-col justify-center items-center pb-20 lg:grid lg:grid-cols-3 lg:justify-items-center lg:mx-60"
-    >
-      {recipes.map((info) => {
-        return (
-          <RecipeTile
-            key={info.recipe.uri}
-            recipeId={info.recipe.uri}
-            imgAlt={info.recipe.label}
-            imgSrc={info.recipe.image}
-          />
-        );
-      })}
-    </div>
+    <>
+      <div
+        id="Home"
+        className="flex flex-col justify-center items-center pb-20 lg:grid lg:grid-cols-3 lg:justify-items-center lg:mx-60"
+      >
+        {recipes.map((info) => {
+          return (
+            <RecipeTile
+              key={info.recipe.uri}
+              recipeId={info.recipe.uri}
+              imgAlt={info.recipe.label}
+              imgSrc={info.recipe.image}
+            />
+          );
+        })}
+      </div>
+      <div className="flex items-center justify-center bg-background text-primary text-xl h-20 sm:hidden">
+        <p className="text-center"> Make with ❤️ by Wild Code School </p>
+      </div>
+    </>
   );
 }
 

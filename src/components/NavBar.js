@@ -31,7 +31,7 @@ function NavBar({ setSearch }) {
         >
           <label htmlFor="searchBar">
             <input
-              className="rounded-lg border border-black border-solid opacity-30 shadow-xl mx-3 w-30 h-9 pl-4 lg:w-80"
+              className="rounded-lg border border-black border-solid opacity-30 shadow-xl mx-3 w-auto h-9 pl-4 lg:w-96"
               id="searchBar"
               type="text"
               placeholder="Search"
