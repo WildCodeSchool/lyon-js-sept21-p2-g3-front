@@ -76,20 +76,6 @@ const RecipeTile = ({ recipeId, imgSrc, imgAlt, date, lunch, diner }) => {
                     setFavoritesId(newFavoritesId);
                   });
                 }
-                // MyFoodAPI.post(`/favorites/${id}`, {
-                //   isfavorite: isFavorite,
-                //   image: imgSrc,
-                //   label: imgAlt,
-                // }).then(() => {
-                //   console.log('isFavorite', isFavorite);
-                //   if (isFavorite) {
-                //     setFavoritesId([...favoritesId, id]);
-                //   } else {
-                //     const newFavoritesId = favoritesId.filter((i) => i !== id);
-                //     setFavoritesId(newFavoritesId);
-                //   }
-                //   console.log('favoritesId : ', favoritesId);
-                // });
               }}
             >
               {' '}
