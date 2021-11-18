@@ -11,7 +11,7 @@ function NavBar({ setSearch }) {
     <>
       <div
         id="NavBar"
-        className="flex flex-row justify-between items-center h-25 bg-background w-full"
+        className="flex flex-row justify-between items-center h-25 bg-background pb-1"
       >
         <NavLink
           activeClassName="active"
@@ -22,15 +22,6 @@ function NavBar({ setSearch }) {
           <img src="media/1.png" alt="img-logo" className="h-20 " />
           <img src="media/2.png" alt="img-logo" className="h-20" />
         </NavLink>
-        {/* <div className="lg:hidden">
-          <ul className="flex flex-row justify-between">
-            <li>HOME</li>
-            <li>MY FAVORITES</li>
-            <li>MY SHOPPING-LIST</li>
-            <li>MY PLANNING</li>
-            <li>MY SHOPKEEPERS</li>
-          </ul>
-        </div> */}
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -40,7 +31,7 @@ function NavBar({ setSearch }) {
         >
           <label htmlFor="searchBar">
             <input
-              className="rounded-lg border border-black border-solid opacity-30 shadow-xl mx-3 w-30 h-9 pl-4"
+              className="rounded-lg border border-black border-solid opacity-30 shadow-xl mx-3 w-30 h-9 pl-4 lg:w-80"
               id="searchBar"
               type="text"
               placeholder="Search"

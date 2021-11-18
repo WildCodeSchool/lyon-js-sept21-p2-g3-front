@@ -17,19 +17,21 @@ const Planning = () => {
     <>
       <div className="grid justify-items-center pb-20">
         <Calendar />
-        {listPlanning.map((recipe) => {
-          return (
-            <RecipeTile
-              key={recipe.id_recipe}
-              recipeId={recipe.id_recipe}
-              imgAlt={recipe.label}
-              imgSrc={recipe.image}
-              date={recipe.date}
-              lunch={recipe.lunch}
-              diner={recipe.diner}
-            />
-          );
-        })}
+        <div className="grid justify-items-center pb-20 lg:grid lg:grid-cols-3 lg:justify-items-center lg:mx-60">
+          {listPlanning.map((recipe) => {
+            return (
+              <RecipeTile
+                key={recipe.id_recipe}
+                recipeId={recipe.id_recipe}
+                imgAlt={recipe.label}
+                imgSrc={recipe.image}
+                date={recipe.date}
+                lunch={recipe.lunch}
+                diner={recipe.diner}
+              />
+            );
+          })}
+        </div>
       </div>
     </>
   );

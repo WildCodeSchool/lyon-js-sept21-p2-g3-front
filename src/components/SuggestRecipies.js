@@ -52,7 +52,7 @@ const SuggestRecipies = () => {
   return (
     <div
       id="SuggestRecipies"
-      className="flex flex-col justify-center items-center"
+      className="flex flex-col justify-center items-center lg:grid lg:grid-cols-3 lg:justify-items-center lg:mx-60"
     >
       {recipeRandom.map((recipe) => {
         return (

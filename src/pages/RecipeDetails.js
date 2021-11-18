@@ -90,14 +90,15 @@ const RecipeDetails = () => {
           </div>
           <div className="infoBulleNotCopied"> Lien copié ! </div>
         </div>
+        <h2 className="text-lg text-primary bg-background font-bold text-center mx-3 py-4 px-24 rounded-2xl mt-4 mb-4">
+          {recipe.label}
+        </h2>
         <img
-          className="w-screen opacity-80"
+          className="w-screen lg:max-w-xs rounded-2xl box-shadow"
           src={recipe.image}
           alt={recipe.label}
         />
-        <h2 className="text-lg text-primary bg-background font-bold text-center mx-3 py-4 px-24 rounded-2xl">
-          {recipe.label}
-        </h2>
+
         <ul className="grid grid-cols-2 w-screen gap-2 ml-4 mt-4 pb-6">
           {recipe.ingredients.map((ingredient) => {
             return (
