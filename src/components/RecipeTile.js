@@ -47,16 +47,20 @@ const RecipeTile = ({
                   {moment(date).format('dddd MMMM Do')}
                 </h2>
 
-                {lunch && (
+                {lunch === 1 ? (
                   <span className="text-third text-3xl pl-4">
                     <WbSunnyIcon sx={{ fontSize: 40 }} />
                   </span>
+                ) : (
+                  ''
                 )}
 
-                {diner && (
+                {diner === 1 ? (
                   <span className="text-third text-3xl pl-4 pr-4">
                     <Brightness2Icon sx={{ fontSize: 40 }} />
                   </span>
+                ) : (
+                  ''
                 )}
               </div>
             ) : (
@@ -114,7 +118,7 @@ const RecipeTile = ({
                   alt={imgAlt}
                 >
                   {' '}
-                  <DeleteForever />
+                  <DeleteForever sx={{ fontSize: 45, color: '#DD7230' }} />
                 </button>
               </div>
             ) : (
