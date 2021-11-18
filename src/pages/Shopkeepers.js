@@ -23,6 +23,9 @@ function LocationMarker() {
       map.flyTo(e.latlng, map.getZoom());
     },
   });
+  useEffect(() => {
+    map.locate();
+  }, []);
 
   return position === null ? null : (
     <Marker position={position} markerColor={redOptions}>
