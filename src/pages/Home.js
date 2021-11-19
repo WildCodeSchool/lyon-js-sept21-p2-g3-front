@@ -12,23 +12,28 @@ function Home({ recipes, search }) {
         >
           MY DAILY SUGGESTIONS
         </h1>
-        <SuggestRecipies />;
+        <SuggestRecipies />
       </div>
     );
   }
   return (
-    <div id="Home" className="flex flex-col justify-center items-center pb-20">
-      {recipes.map((info) => {
-        return (
-          <RecipeTile
-            key={info.recipe.uri}
-            recipeId={info.recipe.uri}
-            imgAlt={info.recipe.label}
-            imgSrc={info.recipe.image}
-          />
-        );
-      })}
-    </div>
+    <>
+      <div
+        id="Home"
+        className="flex flex-col justify-center items-center pb-20 lg:grid lg:grid-cols-3 lg:justify-items-center lg:mx-60"
+      >
+        {recipes.map((info) => {
+          return (
+            <RecipeTile
+              key={info.recipe.uri}
+              recipeId={info.recipe.uri}
+              imgAlt={info.recipe.label}
+              imgSrc={info.recipe.image}
+            />
+          );
+        })}
+      </div>
+    </>
   );
 }
 

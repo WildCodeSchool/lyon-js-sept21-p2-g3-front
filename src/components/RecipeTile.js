@@ -34,21 +34,21 @@ const RecipeTile = ({
     <div>
       <div
         id="RecipeTile"
-        className="flex justify-center w-min rounded-3xl box-shadow my-4"
+        className="flex justify-center w-min rounded-3xl box-shadow my-4 lg:m-10"
       >
         <div
           id="RecipeContainer"
-          className=" relative w-80 m-auto rounded-2xl pt-7"
+          className=" relative w-80 m-auto rounded-2xl pt-7 lg:w-64"
         >
           <Link to={`/recipe/${id}`}>
             {date ? (
-              <div className=" absolute z-10 date flex flex-row justify-center bg-background rounded-t-2xl h-16 w-80 items-center -mt-8">
-                <h2 className="text-primary font-bold text-xl pl-2">
+              <div className=" absolute z-10 date flex flex-row justify-center bg-background rounded-t-2xl h-16 w-80 items-center -mt-8 lg:w-64">
+                <h2 className="text-primary font-bold text-xl pl-2 lg:text-base">
                   {moment(date).format('dddd MMMM Do')}
                 </h2>
 
                 {lunch === 1 ? (
-                  <span className="text-third text-3xl pl-4">
+                  <span className="text-third text-3xl pl-4 lg:pl-5 lg:pr-3">
                     <WbSunnyIcon sx={{ fontSize: 40 }} />
                   </span>
                 ) : (
@@ -56,7 +56,7 @@ const RecipeTile = ({
                 )}
 
                 {diner === 1 ? (
-                  <span className="text-third text-3xl pl-4 pr-4">
+                  <span className="text-third text-3xl pl-4 pr-4 lg:pl-5 lg:pr-3">
                     <Brightness2Icon sx={{ fontSize: 40 }} />
                   </span>
                 ) : (
@@ -74,7 +74,7 @@ const RecipeTile = ({
           </Link>
           <div id="RecipeTitleContainer" className="relative">
             <div
-              className="flex items-center justify-center bg-recipeWhite absolute z-20 left-5 -top-8 w-16 h-16 rounded-full"
+              className="flex items-center justify-center bg-recipeWhite absolute z-20 left-5 -top-8 w-16 h-16 rounded-full "
               onClick={() => {
                 setIsFavorite(!isFavorite);
                 if (!isFavorite) {
