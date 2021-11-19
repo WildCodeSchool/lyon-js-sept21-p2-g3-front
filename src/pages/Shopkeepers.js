@@ -115,11 +115,11 @@ function Shopkeepers() {
         </MapContainer>
       </div>
       <section className=" bg-four container pb-20 text-lg">
-        <div className="m-8">
+        <div className="m-8 lg:grid lg:grid-cols-3 lg:justify-items-center">
           {dataShopkeepers.map((item) => {
             return (
-              <div className="-mx-4 mb-8 text-center">
-                <div className="overflow-hidden h-100 box-shadow bg-background text-primary rounded-2xl ">
+              <div className="-mx-4 mb-8 text-center lg:w-80 ">
+                <div className="overflow-hidden h-100 box-shadow bg-background text-primary rounded-2xl">
                   <div className="card-body">
                     <img
                       src={
@@ -144,6 +144,9 @@ function Shopkeepers() {
           })}
         </div>
       </section>
+      <div className="flex items-center justify-center bg-background text-primary text-xl h-20">
+        <p className="text-center"> Make with ❤️ by Wild Code School </p>
+      </div>
     </>
   );
 }

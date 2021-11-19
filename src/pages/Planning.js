@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import uniqid from 'uniqid';
 import { CircularProgress } from '@mui/material';
 import RecipeTile from '../components/RecipeTile';
 import Calendar from '../components/Calendar';
@@ -17,29 +16,27 @@ const Planning = () => {
   }
 
   return (
-    <>
-      <div className="grid justify-items-center pb-20">
-        <Calendar />
+    <div className="grid justify-items-center">
+      <Calendar />
+      <div className="grid justify-items-center pb-20 lg:grid lg:grid-cols-3 lg:justify-items-center lg:mx-60">
         {listPlanning.map((recipe) => {
           return (
-            <>
-              <RecipeTile
-                key={uniqid()}
-                recipeId={recipe.id_recipe}
-                imgAlt={recipe.label}
-                imgSrc={recipe.image}
-                date={recipe.date}
-                lunch={recipe.lunch}
-                diner={recipe.diner}
-                isInPlanning
-                setDeleteFromPlanning={setDeleteFromPlanning}
-                deleteFromPlanning={deleteFromPlanning}
-              />
-            </>
+            <RecipeTile
+              key={recipe.id_recipe}
+              recipeId={recipe.id_recipe}
+              imgAlt={recipe.label}
+              imgSrc={recipe.image}
+              date={recipe.date}
+              lunch={recipe.lunch}
+              diner={recipe.diner}
+              isInPlanning
+              setDeleteFromPlanning={setDeleteFromPlanning}
+              deleteFromPlanning={deleteFromPlanning}
+            />
           );
         })}
       </div>
-    </>
+    </div>
   );
 };
 

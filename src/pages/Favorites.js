@@ -42,22 +42,27 @@ function Favorites() {
   useEffect(() => getFavoritesId(), []);
 
   return (
-    <div
-      id="main"
-      className="flex flex-col justify-center items-center gap-10 pb-8"
-    >
-      <h1> Favorites</h1>
-      {favoriteRecipes.map((favorite) => {
-        console.log('favorite from favoriteRecipes : ', favorite);
-        return (
-          <RecipeTile
-            key={favorite.id_recipe}
-            recipeId={`.#${favorite.id_recipe}`}
-            imgSrc={favorite.image}
-            imgAlt={favorite.label}
-          />
-        );
-      })}
+    <div className="flex-auto text-xl font-semibold justify-items-center text-center">
+      <h1 className="p-2 -mt-0 border-b-4 border-l-4 border-r-4 border-background bg-background text-primary rounded-b-full">
+        MY FAVORITES
+      </h1>
+
+      <div
+        id="main"
+        className="flex flex-col justify-center items-center pb-8 lg:grid lg:grid-cols-3 lg:justify-items-center lg:mx-60"
+      >
+        {favoriteRecipes.map((favorite) => {
+          console.log('favorite from favoriteRecipes : ', favorite);
+          return (
+            <RecipeTile
+              key={favorite.id_recipe}
+              recipeId={`.#${favorite.id_recipe}`}
+              imgSrc={favorite.image}
+              imgAlt={favorite.label}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }
