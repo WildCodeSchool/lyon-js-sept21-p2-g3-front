@@ -9,7 +9,7 @@ import StorefrontIcon from '@mui/icons-material/Storefront';
 function Footer({ height }) {
   return (
     <div id="footer" style={{ height }}>
-      <ul className="flex flex-row justify-between bg-background h-15 py-4 px-2">
+      <ul className="flex flex-row justify-between bg-background h-15 py-4 px-2 lg:px-52">
         <li>
           <NavLink activeClassName="active" exact to="/">
             <HomeIcon sx={{ fontSize: 40, color: '#FDB500' }} />
