@@ -4,8 +4,9 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Input from '@mui/material/Input';
 import CircularProgress from '@mui/material/CircularProgress';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
+import moment from 'moment';
 import RecipeTile from '../components/RecipeTile';
 
 const AddToPlanning = () => {
@@ -45,14 +46,21 @@ const AddToPlanning = () => {
           onSubmit={(e) => {
             e.preventDefault();
             console.log(id, date, lunch, diner);
-            axios.post(`${process.env.REACT_APP_URL_API_SERVER}/planning`, {
-              id: `.#${id}`,
-              date,
-              lunch,
-              diner,
-              image: recipe.image,
-              label: recipe.label,
-            });
+            axios
+              .post(`${process.env.REACT_APP_URL_API_SERVER}/planning`, {
+                id: `.#${id}`,
+                date,
+                lunch,
+                diner,
+                image: recipe.image,
+                label: recipe.label,
+              })
+              .catch((err) => {
+                if (err.response) {
+                  alert('A meal is already saved for this time !');
+                  console.log('error : ', err);
+                }
+              });
             axios.put(`${process.env.REACT_APP_URL_API_SERVER}/shopping-list`, {
               ingredients: recipe.ingredients,
             });
@@ -78,7 +86,11 @@ const AddToPlanning = () => {
             id="my-input"
             type="date"
             onChange={(e) => {
-              setDate(e.target.value);
+              if (e.target.value >= moment().format()) {
+                setDate(e.target.value);
+              } else {
+                alert("You can't choose a date before today !");
+              }
             }}
             required
             sx={{
@@ -105,6 +117,7 @@ const AddToPlanning = () => {
             }
             label="Lunch"
           />
+
           <FormControlLabel
             control={
               <Checkbox
@@ -121,12 +134,13 @@ const AddToPlanning = () => {
             }
             label="Diner"
           />
+
           <Button
             type="submit"
             variant="raised"
             sx={{ color: '#FDB500', bgcolor: '#2E1F27', padding: 2 }}
           >
-            Add to planning
+            <Link to="/planning"> Add to planning</Link>
           </Button>
         </form>
       </div>

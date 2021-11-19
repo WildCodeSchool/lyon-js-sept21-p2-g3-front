@@ -51,16 +51,20 @@ const RecipeDetails = () => {
             className="flex items-center justify-center bg-recipeWhite z-20 left-5 -top-8 w-16 h-16 rounded-full"
             onClick={() => {
               setIsFavorite(!isFavorite);
-              MyFoodAPI.post(`/favorites/${id}`, {
-                isfavorite: isFavorite,
-              }).then(() => {
-                if (!isFavorite) {
+              if (!isFavorite) {
+                MyFoodAPI.post(`/favorites/${id}`, {
+                  image: recipe.image,
+                  label: recipe.label,
+                }).then(() => {
                   setFavoritesId([...favoritesId, id]);
-                } else {
+                  console.log('favoritesId : ', favoritesId);
+                });
+              } else {
+                MyFoodAPI.delete(`/favorites/${id}`).then(() => {
                   const newFavoritesId = favoritesId.filter((i) => i !== id);
                   setFavoritesId(newFavoritesId);
-                }
-              });
+                });
+              }
             }}
           >
             {' '}

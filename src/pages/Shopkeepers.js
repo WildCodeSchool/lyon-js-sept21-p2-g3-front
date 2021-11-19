@@ -14,6 +14,7 @@ const redOptions = { color: '#FDB500' };
 
 function LocationMarker() {
   const [position, setPosition] = useState(null);
+
   const map = useMapEvents({
     click() {
       map.locate();
@@ -23,6 +24,9 @@ function LocationMarker() {
       map.flyTo(e.latlng, map.getZoom());
     },
   });
+  useEffect(() => {
+    map.locate();
+  }, []);
 
   return position === null ? null : (
     <Marker position={position} markerColor={redOptions}>
@@ -78,7 +82,7 @@ function Shopkeepers() {
           MY SHOPKEEPERS
         </h1>
         <MapContainer
-          className="h-80"
+          className="h-80 "
           id="map"
           center={[45.764043, 4.835659]}
           zoom={9.5}
@@ -91,21 +95,20 @@ function Shopkeepers() {
 
           {dataShopkeepers.map((item) => {
             return (
-              <Marker
-                position={[
-                  item.adressesOperateurs[0].lat,
-                  item.adressesOperateurs[0].long,
-                ]}
-              >
-                <Popup>
-                  {item.raisonSociale}
-                  <br />
-                  {item.adressesOperateurs[0].lieu}
-                  <br />
-                  {item.adressesOperateurs[0].ville}
-                  <br />
-                </Popup>
-              </Marker>
+              <>
+                <Marker
+                  position={[
+                    item.adressesOperateurs[0].lat,
+                    item.adressesOperateurs[0].long,
+                  ]}
+                >
+                  <Popup>
+                    {item.raisonSociale} <br />
+                    {item.adressesOperateurs[0].lieu} <br />
+                    {item.adressesOperateurs[0].ville}
+                  </Popup>
+                </Marker>
+              </>
             );
           })}
           <LocationMarker />
