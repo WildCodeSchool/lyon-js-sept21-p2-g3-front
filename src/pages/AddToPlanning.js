@@ -4,12 +4,13 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Input from '@mui/material/Input';
 import CircularProgress from '@mui/material/CircularProgress';
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import moment from 'moment';
 import RecipeTile from '../components/RecipeTile';
 
 const AddToPlanning = () => {
+  const history = useHistory();
   const { id } = useParams();
   const [recipe, setRecipe] = useState();
   const [date, setDate] = useState();
@@ -55,15 +56,24 @@ const AddToPlanning = () => {
                 image: recipe.image,
                 label: recipe.label,
               })
+              .then(() => {
+                axios
+                  .put(
+                    `${process.env.REACT_APP_URL_API_SERVER}/shopping-list`,
+                    {
+                      ingredients: recipe.ingredients,
+                    }
+                  )
+                  .then(() => {
+                    history.push('/planning');
+                  });
+              })
               .catch((err) => {
                 if (err.response) {
                   alert('A meal is already saved for this time !');
                   console.log('error : ', err);
                 }
               });
-            axios.put(`${process.env.REACT_APP_URL_API_SERVER}/shopping-list`, {
-              ingredients: recipe.ingredients,
-            });
           }}
         >
           <InputLabel
@@ -140,7 +150,7 @@ const AddToPlanning = () => {
             variant="raised"
             sx={{ color: '#FDB500', bgcolor: '#2E1F27', padding: 2 }}
           >
-            <Link to="/planning"> Add to planning</Link>
+            Add to planning
           </Button>
         </form>
       </div>

@@ -9,7 +9,7 @@ import ShoppingList from './pages/ShoppingList';
 import Planning from './pages/Planning';
 import Shopkeepers from './pages/Shopkeepers';
 import RecipeDetails from './pages/RecipeDetails';
-import AddToPlanning from './pages2/AddToPlanning';
+import AddToPlanning from './pages/AddToPlanning';
 import { FavoritesContextProviders } from './contexts/FavoritesContexts';
 import { AddToPlanningContextProvider } from './contexts/AddToPlanningContext';
 import useScroll from './useScroll';

@@ -112,10 +112,10 @@ export default function IngredientList() {
               fontWeight: 'bold',
             }}
           >
-            DELETE ITEMS
+            DELETE SELECTED
           </Button>
         ) : (
-          'Aucun ingrédient dans la liste ! '
+          'No ingredients for now'
         )}
       </List>
     </>
